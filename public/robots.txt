@@ -1,0 +1,5 @@
+User-agent: *
+Disallow: /thanks/
+Disallow: /downloads/
+
+Sitemap: https://drdamultatelecom.com.br/sitemap.xml

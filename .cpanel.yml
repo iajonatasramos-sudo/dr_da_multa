@@ -1,0 +1,5 @@
+---
+deployment:
+  tasks:
+    - export DEPLOYPATH=/home/elitedoc/drdamultatelecom.com.br/
+    - /bin/cp -R public/. $DEPLOYPATH
