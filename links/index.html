@@ -105,7 +105,6 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            filter: grayscale(1) contrast(1.05) brightness(.85);
         }
 
         /* Véu chapado: a fotografia aparece, o texto continua legível. */
@@ -115,8 +114,12 @@
             position: absolute;
             inset: 0;
             z-index: -1;
-            background: rgba(2, 15, 39, .74);
+            background: rgba(2, 15, 39, .55);
             transition: background-color .4s ease;
+        }
+
+        .topo::after {
+            background: rgba(2, 15, 39, .7);
         }
 
         .topo .logo {
@@ -181,7 +184,7 @@
 
         .cartao:hover::after,
         .cartao:focus-visible::after {
-            background: rgba(2, 15, 39, .58);
+            background: rgba(2, 15, 39, .4);
         }
 
         .cartao:active {
@@ -207,39 +210,87 @@
             line-height: 1.5;
         }
 
-        /* O disco do "mais", como na referência: gira ao toque. */
-        .cartao .mais {
-            position: absolute;
-            top: clamp(1rem, 4vw, 1.4rem);
-            right: clamp(1rem, 4vw, 1.4rem);
-            width: 2.1rem;
-            height: 2.1rem;
-            border-radius: 50%;
+        /* O cartão do e-book mostra a capa como objeto, não como fundo:
+           a tipografia da capa brigava com a do cartão quando recortada. */
+        .cartao--ebook {
+            background: #071C40;
+        }
+
+        .cartao--ebook::after {
+            display: none;
+        }
+
+        .cartao .capa {
+            width: auto;
+            height: clamp(7rem, 24vw, 9rem);
+            margin: 0 auto 1.1rem;
+            border-radius: 4px;
+        }
+
+        /* A ação de cada cartão, em forma de botão. */
+        .cartao .acao {
+            display: inline-flex;
+            align-items: center;
+            gap: .5rem;
+            margin: 1.15rem auto 0;
+            padding: .7rem 1.3rem;
+            border-radius: 999px;
             background: var(--accent);
             color: var(--ground);
-            display: grid;
-            place-items: center;
-            font-size: 1.25rem;
             font-weight: 700;
+            font-size: .98rem;
             line-height: 1;
-            transition: transform .35s cubic-bezier(.2, .7, .3, 1);
+            transition: background-color .3s ease;
         }
 
-        .cartao:hover .mais,
-        .cartao:focus-visible .mais {
-            transform: rotate(90deg);
+        .cartao .acao svg {
+            width: 1.15rem;
+            height: 1.15rem;
         }
 
-        .cartao--whatsapp .mais {
+        .cartao--whatsapp .acao {
             background: var(--whatsapp);
             color: var(--ink);
+        }
+
+        .cartao:hover .acao {
+            background: var(--accent-light);
+        }
+
+        .cartao--whatsapp:hover .acao {
+            background: #25D366;
         }
 
         /* ---------- Rodapé ---------- */
 
         .rodape {
+            position: relative;
             margin-top: clamp(1.75rem, 6vw, 2.5rem);
+            padding: clamp(2rem, 8vw, 3rem) clamp(1.25rem, 6vw, 2rem);
+            border-radius: var(--raio);
+            overflow: hidden;
+            isolation: isolate;
             text-align: center;
+        }
+
+        .rodape .fundo {
+            position: absolute;
+            inset: 0;
+            z-index: -2;
+        }
+
+        .rodape .fundo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .rodape::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            z-index: -1;
+            background: rgba(2, 15, 39, .85);
         }
 
         .assinatura {
@@ -384,42 +435,49 @@
                     <img src="/assets/img/arquivo/women-working-at-the-u-s-capitol.jpg" width="1024" height="668" alt=""
                         loading="lazy" decoding="async">
                 </span>
-                <span class="mais" aria-hidden="true">+</span>
-                <span class="titulo">Falar no WhatsApp</span>
-                <span class="texto">Negativado, multado ou cobrado a mais? Conte o seu caso e um especialista
-                    responde.</span>
+                <span class="titulo">Fale com um especialista</span>
+                <span class="texto">Negativado, multado ou cobrado a mais pela operadora? Conte o seu caso.</span>
+                <span class="acao">
+                    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                        <path
+                            d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38a9.87 9.87 0 0 0 4.74 1.21h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2Zm0 18.15h-.01a8.2 8.2 0 0 1-4.19-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.23 8.23 0 0 1-1.26-4.38c0-4.54 3.7-8.23 8.25-8.23 2.2 0 4.27.86 5.83 2.42a8.19 8.19 0 0 1 2.41 5.82c0 4.54-3.7 8.23-8.24 8.23Zm4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.13-.17.24-.64.8-.79.97-.14.16-.29.18-.54.06-.25-.13-1.05-.39-2-1.23-.74-.66-1.24-1.47-1.38-1.72-.15-.25-.02-.38.11-.5.11-.11.25-.29.37-.43.13-.15.17-.25.25-.41.08-.17.04-.31-.02-.43-.06-.12-.56-1.34-.76-1.84-.2-.48-.41-.42-.56-.42l-.48-.01c-.17 0-.43.06-.66.31-.23.25-.86.85-.86 2.07 0 1.22.89 2.4 1.01 2.56.12.17 1.75 2.67 4.23 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.47-.07 1.47-.6 1.67-1.18.21-.58.21-1.07.15-1.18-.06-.1-.23-.17-.48-.29Z" />
+                    </svg>
+                    Falar no WhatsApp
+                </span>
             </a></li>
 
-            <li><a class="cartao sobe" href="/academy/">
-                <span class="fundo" aria-hidden="true">
-                    <img src="/assets/img/arquivo/colleges-and-universities-miscellaneous-university-of-utah.jpg"
-                        width="1920" height="1254" alt="" loading="lazy" decoding="async">
-                </span>
-                <span class="mais" aria-hidden="true">+</span>
+            <li><a class="cartao cartao--ebook sobe" href="/academy/">
+                <img class="capa" src="/assets/img/arquivo/capa-ebook.webp" width="720" height="960"
+                    alt="Capa do e-book O Mar Azul da Advocacia" loading="lazy" decoding="async">
                 <span class="titulo">E-book para advogados</span>
                 <span class="texto">O Mar Azul da Advocacia: um mercado com 1,3 milhão de reclamações por ano na Anatel
-                    e quase nenhum advogado. Download gratuito.</span>
+                    e quase nenhum advogado.</span>
+                <span class="acao">Baixar gratuitamente</span>
             </a></li>
 
             <li><a class="cartao sobe" href="/academy/imersao/">
                 <span class="fundo" aria-hidden="true">
-                    <img src="/assets/img/arquivo/permanent-repair-of-a-10-pair-copper.jpg" width="1920" height="1080"
-                        alt="" loading="lazy" decoding="async">
+                    <img src="/assets/img/arquivo/imersao-mar.webp" width="960" height="540" alt="" loading="lazy"
+                        decoding="async">
                 </span>
-                <span class="mais" aria-hidden="true">+</span>
                 <span class="titulo">Imersão Telecom ADV</span>
                 <span class="texto">05 e 06 de dezembro, sábado e domingo, das 10h às 16h, online e ao vivo.
-                    <span id="contagem"></span> Entre na lista de espera.</span>
+                    <span id="contagem"></span></span>
+                <span class="acao">Entrar na lista de espera</span>
             </a></li>
         </ul>
 
         <footer class="rodape sobe">
+            <span class="fundo" aria-hidden="true">
+                <img src="/assets/img/arquivo/manhole-cover-post-office-copper-telephone-cable.jpg" width="1920"
+                    height="937" alt="" loading="lazy" decoding="async">
+            </span>
             <p class="assinatura sobe">Cerqueira Cesar Advocacia</p>
             <p class="endereco sobe">
                 Av. Cmte. Sampaio, 366 — Km 18, Osasco, SP<br>
                 <a href="/">drdamultatelecom.com.br</a> · Devidamente registrado na OAB.
             </p>
-            <p class="credits">Imagens: <a
+            <p class="credits">Imagens de acervo: <a
                     href="https://commons.wikimedia.org/wiki/File:Telephone_exchange_Montreal_QE3_33.jpg">“Telephone
                     exchange Montreal QE3 33”</a> por Various photographers for Cassell &amp; Co., <a
                     href="https://creativecommons.org/publicdomain/mark/1.0/">domínio público</a>, via Wikimedia
@@ -428,14 +486,10 @@
                     working at the U.S. Capitol switchboard”</a> por Trikosko, Marion S., <a
                     href="https://creativecommons.org/publicdomain/mark/1.0/">domínio público</a>, via Wikimedia
                 Commons; <a
-                    href="https://commons.wikimedia.org/wiki/File:Colleges_and_Universities_-_Miscellaneous_-_University_of_Utah_detachment_cable_splicing,_telephone_class._July_15,_1918_-_NARA_-_26431132.jpg">“University
-                    of Utah detachment cable splicing, telephone class”</a>, <a
-                    href="https://creativecommons.org/publicdomain/mark/1.0/">domínio público</a>, via Wikimedia
-                Commons; <a
-                    href="https://commons.wikimedia.org/wiki/File:Permanent_repair_of_a_10-pair_copper_telephone_cable.jpg">“Permanent
-                    repair of a 10-pair copper telephone cable”</a> por Lafi90, <a
-                    href="https://creativecommons.org/publicdomain/zero/1.0/deed.en">CC0</a>, via Wikimedia Commons.
-            </p>
+                    href="https://commons.wikimedia.org/wiki/File:Manhole_Cover_-_Post_Office_Copper_Telephone_Cable_Pit.jpg">“Manhole
+                    Cover — Post Office Copper Telephone Cable Pit”</a> por FirstPrinciples, <a
+                    href="https://creativecommons.org/publicdomain/zero/1.0/deed.en">CC0</a>, via Wikimedia
+                Commons.</p>
         </footer>
     </div>
 
