@@ -4,7 +4,9 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useRef, useState } from "react";
 import { uuid } from "@/lib/attribution";
-import { buildLeadPayload, firstName, sendLead, type LeadInput } from "@/lib/lead";
+import { buildLeadPayload, firstName, sendLead, type LeadInput, type LeadOffer } from "@/lib/lead";
+import { ebookOffer, listaEsperaOffer } from "@/lib/offers";
+import { JoinGroupButton } from "./ThankYou";
 import { isValidMobile, maskPhone } from "@/lib/phone";
 import { supportWhatsappLink } from "@/lib/site";
 import { trackLead } from "@/lib/track";
@@ -22,28 +24,68 @@ const UFS = [
   "PB", "PR", "PE", "PI", "RJ", "RN", "RS", "RO", "RR", "SC", "SP", "SE", "TO",
 ];
 
+/**
+ * O formulário atende duas ofertas. O que muda entre elas — textos, oferta e o
+ * que acontece depois do envio — fica aqui, para não duplicar o formulário.
+ */
+type Variant = "ebook" | "lista-espera";
+
+const VARIANTS: Record<Variant, {
+  offer: LeadOffer;
+  titulo: React.ReactNode;
+  subtitulo: string;
+  botao: string;
+  rodape: string;
+  consentimento: string;
+  erroConsentimento: string;
+  /** "redirect" vai para /obrigado/; "inline" troca o formulário pela confirmação. */
+  depois: "redirect" | "inline";
+}> = {
+  ebook: {
+    offer: ebookOffer,
+    titulo: <>Receba o <span className="whitespace-nowrap">e-book</span> gratuito</>,
+    subtitulo: "Preencha para liberar o download agora.",
+    botao: "Quero o e-book gratuito",
+    rodape: "Gratuito. Enviamos o e-book para o seu e-mail e WhatsApp.",
+    consentimento: "Concordo em receber o e-book e comunicações da Telecom ADV Academy por e-mail e WhatsApp, conforme a",
+    erroConsentimento: "Marque esta opção para receber o e-book.",
+    depois: "redirect",
+  },
+  "lista-espera": {
+    offer: listaEsperaOffer,
+    titulo: <>Entrar na lista de espera</>,
+    subtitulo: "As inscrições ainda não abriram. Avisamos você em primeiro lugar.",
+    botao: "Quero ser avisado",
+    rodape: "Sem compromisso. Avisamos por e-mail e WhatsApp quando abrir.",
+    consentimento: "Concordo em receber avisos sobre a Imersão Telecom ADV por e-mail e WhatsApp, conforme a",
+    erroConsentimento: "Marque esta opção para entrar na lista.",
+    depois: "inline",
+  },
+};
+
 type Field = keyof LeadInput;
 type Errors = Partial<Record<Field, string>>;
 
 const EMPTY: LeadInput = { name: "", email: "", whatsapp: "", role: "", state: "", consent: false };
 const FIELD_ORDER: Field[] = ["name", "email", "whatsapp", "role", "consent"];
 
-function validate(v: LeadInput): Errors {
+function validate(v: LeadInput, erroConsentimento: string): Errors {
   const e: Errors = {};
   if (v.name.trim().length < 3 || !/\s/.test(v.name.trim())) e.name = "Informe nome e sobrenome.";
   if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v.email.trim())) e.email = "Informe um e-mail válido, como nome@exemplo.com.";
   if (!isValidMobile(v.whatsapp)) e.whatsapp = "Informe um celular com DDD, como (11) 91234-5678.";
   if (!v.role) e.role = "Escolha uma opção.";
-  if (!v.consent) e.consent = "Marque esta opção para receber o e-book.";
+  if (!v.consent) e.consent = erroConsentimento;
   return e;
 }
 
-export function LeadForm({ id = "formulario" }: { id?: string }) {
+export function LeadForm({ id = "formulario", variant = "ebook" }: { id?: string; variant?: Variant }) {
+  const v = VARIANTS[variant];
   const router = useRouter();
   const [values, setValues] = useState<LeadInput>(EMPTY);
   const [errors, setErrors] = useState<Errors>({});
   const [touched, setTouched] = useState<Partial<Record<Field, boolean>>>({});
-  const [status, setStatus] = useState<"idle" | "sending" | "error">("idle");
+  const [status, setStatus] = useState<"idle" | "sending" | "error" | "done">("idle");
   const sending = useRef(false);
   const honeypot = useRef<HTMLInputElement>(null);
   const formRef = useRef<HTMLFormElement>(null);
@@ -51,19 +93,19 @@ export function LeadForm({ id = "formulario" }: { id?: string }) {
   const update = <K extends Field>(key: K, value: LeadInput[K]) => {
     const next = { ...values, [key]: value };
     setValues(next);
-    if (touched[key]) setErrors((prev) => ({ ...prev, [key]: validate(next)[key] }));
+    if (touched[key]) setErrors((prev) => ({ ...prev, [key]: validate(next, v.erroConsentimento)[key] }));
   };
 
   const blur = (key: Field) => {
     setTouched((t) => ({ ...t, [key]: true }));
-    setErrors((prev) => ({ ...prev, [key]: validate(values)[key] }));
+    setErrors((prev) => ({ ...prev, [key]: validate(values, v.erroConsentimento)[key] }));
   };
 
   async function onSubmit(event: React.FormEvent) {
     event.preventDefault();
     if (sending.current) return;
 
-    const found = validate(values);
+    const found = validate(values, v.erroConsentimento);
     setErrors(found);
     setTouched({ name: true, email: true, whatsapp: true, role: true, consent: true });
     const firstInvalid = FIELD_ORDER.find((f) => found[f]);
@@ -76,7 +118,8 @@ export function LeadForm({ id = "formulario" }: { id?: string }) {
 
     // Bot preencheu o campo invisível: finge sucesso sem enviar nada.
     if (honeypot.current?.value) {
-      router.push(`/obrigado/?nome=${nome}`);
+      if (v.depois === "inline") setStatus("done");
+      else router.push(`/obrigado/?nome=${nome}`);
       return;
     }
 
@@ -84,9 +127,14 @@ export function LeadForm({ id = "formulario" }: { id?: string }) {
     setStatus("sending");
     const eventId = uuid();
     try {
-      await sendLead(buildLeadPayload(values, eventId));
+      await sendLead(buildLeadPayload(values, eventId, v.offer), v.offer.webhookUrl);
       trackLead(eventId, values.role);
-      router.push(`/obrigado/?nome=${nome}`);
+      if (v.depois === "inline") {
+        sending.current = false;
+        setStatus("done");
+      } else {
+        router.push(`/obrigado/?nome=${nome}`);
+      }
     } catch (err) {
       console.error("[lead] falha ao enviar para o webhook", err);
       sending.current = false;
@@ -99,6 +147,31 @@ export function LeadForm({ id = "formulario" }: { id?: string }) {
 
   const isSending = status === "sending";
 
+  // Lista de espera: no sucesso o formulário dá lugar à confirmação, com o convite do grupo.
+  if (status === "done") {
+    return (
+      <div
+        className="rounded-2xl border border-gold/30 bg-abyss-deep/80 p-5 text-center shadow-[0_30px_80px_-30px_rgb(0_0_0/0.8)] backdrop-blur-md sm:p-7"
+        role="status"
+        aria-live="polite"
+      >
+        <p className="seal justify-center">Pronto</p>
+        <h2 className="mt-4 text-3xl leading-tight text-beige sm:text-4xl">
+          {firstName(values.name) ? `${firstName(values.name)}, você está na lista` : "Você está na lista"}
+        </h2>
+        <p className="mt-3 leading-relaxed text-mist">
+          Avisamos por e-mail e WhatsApp assim que as inscrições da Imersão Telecom ADV abrirem.
+        </p>
+        <p className="mt-5 leading-relaxed text-mist">
+          Enquanto isso, entre no grupo: é lá que o aviso sai primeiro, junto com as lives semanais do Dr. Jason.
+        </p>
+        <div className="mt-6 flex justify-center">
+          <JoinGroupButton />
+        </div>
+      </div>
+    );
+  }
+
   return (
     <form
       id={id}
@@ -109,9 +182,9 @@ export function LeadForm({ id = "formulario" }: { id?: string }) {
       className="relative rounded-2xl border border-gold/30 bg-abyss-deep/80 p-5 shadow-[0_30px_80px_-30px_rgb(0_0_0/0.8)] backdrop-blur-md sm:p-7"
     >
       <h2 id={`${id}-titulo`} className="text-2xl leading-tight text-beige sm:text-[1.75rem] xl:text-[1.6rem]">
-        Receba o <span className="whitespace-nowrap">e-book</span> gratuito
+        {v.titulo}
       </h2>
-      <p className="mt-1.5 text-sm text-mist-dim">Preencha para liberar o download agora.</p>
+      <p className="mt-1.5 text-sm text-mist-dim">{v.subtitulo}</p>
 
       <div className="mt-5 space-y-4">
         <div>
@@ -239,7 +312,7 @@ export function LeadForm({ id = "formulario" }: { id?: string }) {
               required
             />
             <span>
-              Concordo em receber o e-book e comunicações da Telecom ADV Academy por e-mail e WhatsApp, conforme a{" "}
+              {v.consentimento}{" "}
               <Link href="/privacidade/" className="text-fiber underline underline-offset-2" target="_blank">
                 Política de Privacidade
               </Link>
@@ -266,12 +339,10 @@ export function LeadForm({ id = "formulario" }: { id?: string }) {
             <Spinner /> Enviando…
           </>
         ) : (
-          "Quero o e-book gratuito"
+          v.botao
         )}
       </button>
-      <p className="mt-3 text-center text-xs text-mist-dim">
-        Gratuito. Enviamos o e-book para o seu e-mail e WhatsApp.
-      </p>
+      <p className="mt-3 text-center text-xs text-mist-dim">{v.rodape}</p>
 
       <div aria-live="assertive">
         {status === "error" && (

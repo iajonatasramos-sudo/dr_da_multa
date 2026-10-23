@@ -2,7 +2,6 @@
 
 import { getAttribution, getMetaCookies } from "./attribution";
 import { toE164 } from "./phone";
-import { site } from "./site";
 
 export type LeadInput = {
   name: string;
@@ -15,7 +14,17 @@ export type LeadInput = {
 
 export type LeadPayload = ReturnType<typeof buildLeadPayload>;
 
-export function buildLeadPayload(input: LeadInput, eventId: string) {
+/**
+ * O que está sendo pedido. Define o texto de consentimento que fica gravado no
+ * lead, o identificador da oferta e para qual webhook o cadastro vai.
+ */
+export type LeadOffer = {
+  id: string;
+  consentText: string;
+  webhookUrl: string;
+};
+
+export function buildLeadPayload(input: LeadInput, eventId: string, offer: LeadOffer) {
   const attribution = getAttribution();
   const { fbp, fbc } = getMetaCookies(attribution.fbclid);
   return {
@@ -30,8 +39,7 @@ export function buildLeadPayload(input: LeadInput, eventId: string) {
       role: input.role,
       state: input.state || null,
       consent: input.consent,
-      consent_text:
-        "Concordo em receber o e-book e comunicações da Telecom ADV Academy por e-mail e WhatsApp, conforme a Política de Privacidade.",
+      consent_text: offer.consentText,
     },
     attribution: {
       utm_source: attribution.utm_source,
@@ -50,7 +58,7 @@ export function buildLeadPayload(input: LeadInput, eventId: string) {
       referrer: attribution.first_referrer,
       user_agent: navigator.userAgent,
     },
-    offer: "ebook-mar-azul-da-advocacia",
+    offer: offer.id,
   };
 }
 
@@ -58,11 +66,11 @@ export function firstName(name: string) {
   return name.trim().split(/\s+/)[0] ?? "";
 }
 
-async function postOnce(payload: LeadPayload, timeoutMs: number) {
+async function postOnce(payload: LeadPayload, url: string, timeoutMs: number) {
   const controller = new AbortController();
   const timer = setTimeout(() => controller.abort(), timeoutMs);
   try {
-    const res = await fetch(site.leadWebhookUrl, {
+    const res = await fetch(url, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(payload),
@@ -75,13 +83,13 @@ async function postOnce(payload: LeadPayload, timeoutMs: number) {
   }
 }
 
-export async function sendLead(payload: LeadPayload) {
-  if (!site.leadWebhookUrl) throw new Error("NEXT_PUBLIC_LEAD_WEBHOOK_URL não configurada");
+export async function sendLead(payload: LeadPayload, webhookUrl: string) {
+  if (!webhookUrl) throw new Error("Webhook não configurado para esta oferta");
   try {
-    await postOnce(payload, 10000);
+    await postOnce(payload, webhookUrl, 10000);
   } catch (first) {
     console.warn("[lead] primeira tentativa falhou, tentando de novo", first);
     await new Promise((r) => setTimeout(r, 800));
-    await postOnce(payload, 12000);
+    await postOnce(payload, webhookUrl, 12000);
   }
 }

@@ -55,7 +55,7 @@ export function Hero() {
           <div className="mt-8 rounded-2xl border border-gold/25 bg-abyss-deep/70 p-5 backdrop-blur sm:w-fit sm:p-6">
             <HeroPrice />
             <p className="mt-3 text-xs text-mist-dim">
-              Pagamento seguro pela Hotmart · Garantia de {imersao.guaranteeDays} dias
+              Inscrições ainda não abertas · Entre na lista e seja avisado primeiro
             </p>
           </div>
         </div>

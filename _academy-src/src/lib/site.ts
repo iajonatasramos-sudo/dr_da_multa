@@ -12,6 +12,7 @@ export const site = {
   url: clean(process.env.NEXT_PUBLIC_SITE_URL) || "https://telecomadv.academy",
   name: "Telecom ADV Academy",
   leadWebhookUrl: clean(process.env.NEXT_PUBLIC_LEAD_WEBHOOK_URL),
+  waitlistWebhookUrl: clean(process.env.NEXT_PUBLIC_WAITLIST_WEBHOOK_URL),
   whatsappGroupUrl: clean(process.env.NEXT_PUBLIC_WHATSAPP_GROUP_URL),
   ebookUrl: clean(process.env.NEXT_PUBLIC_EBOOK_URL) || `${BASE_PATH}/ebook/o-mar-azul-da-advocacia.pdf`,
   supportWhatsapp: clean(process.env.NEXT_PUBLIC_SUPPORT_WHATSAPP) || "5511973733366",

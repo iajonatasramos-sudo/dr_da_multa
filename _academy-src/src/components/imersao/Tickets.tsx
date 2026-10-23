@@ -4,7 +4,8 @@ import { imersao } from "@/config/imersao";
 import { hourRange, money } from "@/lib/imersao";
 import { IconCheck, IconLock, IconMinus } from "../Icons";
 import { useSales } from "./Clock";
-import { CheckoutButton, Installments, SalesClosed } from "./Purchase";
+import { Installments, SalesClosed } from "./Purchase";
+import { WaitlistButton } from "./Waitlist";
 
 const FEATURES: { label: string; vipOnly?: boolean }[] = [
   { label: "2 dias ao vivo, das " + hourRange },
@@ -76,9 +77,7 @@ export function Tickets() {
               <Installments value={sales.ticket} />
               <FeatureList vip={false} />
               <div className="mt-auto pt-8">
-                <CheckoutButton kind="ingresso" className="btn btn-outline w-full">
-                  Quero o ingresso
-                </CheckoutButton>
+                <WaitlistButton className="btn btn-outline w-full">Avise-me quando abrir</WaitlistButton>
               </div>
             </article>
 
@@ -100,9 +99,7 @@ export function Tickets() {
               </p>
               <FeatureList vip />
               <div className="mt-auto pt-8">
-                <CheckoutButton kind="vip" className="btn btn-gold w-full">
-                  Quero o VIP
-                </CheckoutButton>
+                <WaitlistButton className="btn btn-gold w-full">Avise-me quando abrir</WaitlistButton>
               </div>
             </article>
           </div>

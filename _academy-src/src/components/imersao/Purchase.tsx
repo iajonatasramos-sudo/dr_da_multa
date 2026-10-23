@@ -7,6 +7,7 @@ import { checkoutUrl, dateTime, earlyBirdUntil, money, money2, type TicketKind }
 import { site } from "@/lib/site";
 import { trackImersaoView, trackInitiateCheckout } from "@/lib/track";
 import { Countdown, useSales } from "./Clock";
+import { WAITLIST_ID, WaitlistButton } from "./Waitlist";
 
 /** Botão de compra: monta a URL da Hotmart com a origem da visita no momento do clique. */
 export function CheckoutButton({
@@ -68,9 +69,9 @@ export function HeroPrice() {
           <Countdown target={earlyBirdUntil} label="para a virada do lote" size="sm" />
         </p>
       )}
-      <CheckoutButton kind="ingresso" className="btn btn-gold mt-5 w-full sm:w-auto sm:px-8">
-        Garantir meu ingresso
-      </CheckoutButton>
+      <WaitlistButton className="btn btn-gold mt-5 w-full sm:w-auto sm:px-8">
+        Entrar na lista de espera
+      </WaitlistButton>
     </div>
   );
 }
@@ -120,13 +121,9 @@ export function FinalCheckout() {
     );
   }
   return (
-    <div className="mt-10 flex w-full flex-col gap-3 sm:w-auto sm:flex-row">
-      <CheckoutButton kind="vip" className="btn btn-gold sm:px-8">
-        Quero o VIP · {money(sales.vip)}
-      </CheckoutButton>
-      <CheckoutButton kind="ingresso" className="btn btn-outline sm:px-8">
-        Quero o ingresso · {money(sales.ticket)}
-      </CheckoutButton>
+    <div className="mt-10 flex w-full flex-col items-center gap-3 sm:w-auto">
+      <WaitlistButton className="btn btn-gold w-full sm:w-auto sm:px-10">Entrar na lista de espera</WaitlistButton>
+      <p className="text-sm text-mist-dim">Avisamos em primeiro lugar quando as inscrições abrirem.</p>
     </div>
   );
 }
@@ -135,5 +132,5 @@ export function FinalCheckout() {
 export function ImersaoSticky() {
   const { closed, ticket } = useSales();
   if (closed) return null;
-  return <StickyCta targetId="ingressos" label={`Garantir ingresso · ${money(ticket)}`} focusFirstInput={false} />;
+  return <StickyCta targetId={WAITLIST_ID} label="Entrar na lista de espera" />;
 }

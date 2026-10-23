@@ -8,6 +8,7 @@ import { Faq, type FaqItem } from "@/components/Sections";
 import { imersao } from "@/config/imersao";
 import { datesLong, datesShort, hourRange, weekdays } from "@/lib/imersao";
 import { whatsappLink, BASE_PATH } from "@/lib/site";
+import { WaitlistSection } from "@/components/imersao/Waitlist";
 
 const title = `Imersão Telecom ADV | ${datesShort} · Online e ao vivo`;
 const description = `Em 2 dias ao vivo (${datesLong}, ${weekdays}, das ${hourRange} de Brasília), o Dr. Jason de Cerqueira Cesar mostra como atuar no Direito das Telecomunicações: causas, teses e captação de clientes dentro das regras da OAB.`;
@@ -72,6 +73,7 @@ export default function ImersaoPage() {
         <AudienceSplit />
         <Hosts />
         <Tickets />
+        <WaitlistSection />
         <Guarantee />
         <Faq items={FAQ} />
         <FinalCta />
