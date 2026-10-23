@@ -1,5 +1,7 @@
 User-agent: *
 Disallow: /thanks/
 Disallow: /downloads/
+Disallow: /academy/obrigado/
+Disallow: /academy/imersao/obrigado/
 
 Sitemap: https://drdamultatelecom.com.br/sitemap.xml

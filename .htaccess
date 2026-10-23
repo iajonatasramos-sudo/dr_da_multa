@@ -8,6 +8,9 @@ RewriteEngine On
 RewriteRule (^|/)\.git(/|$) - [R=404,L]
 RewriteRule ^(README\.md|\.gitignore|\.cpanel\.yml)$ - [R=404,L]
 
+# Fonte do Next.js do /academy: fica no repositorio, mas nunca e servida pela web
+RewriteRule (^|/)_academy-src(/|$) - [R=404,L]
+
 # HTTPS e domínio sem www
 RewriteCond %{HTTPS} off [OR]
 RewriteCond %{HTTP_HOST} ^www\. [NC]

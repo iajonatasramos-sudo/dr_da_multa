@@ -1,0 +1,224 @@
+@import "tailwindcss";
+
+@theme {
+  --color-abyss: #0a1a3f;
+  --color-abyss-deep: #071331;
+  --color-ocean: #123a7a;
+  --color-fiber: #38c6f4;
+  --color-cream: #f4ebd9;
+  --color-beige: #dcc7a1;
+  --color-gold: #c9a55c;
+  --color-gold-soft: #dcc089;
+  --color-mist: #dce4f2;
+  --color-mist-dim: #a9b7d0;
+  --color-whatsapp: #25d366;
+  --color-whatsapp-ink: #062b14;
+  --color-danger: #ff9b8f;
+
+  --font-display: var(--font-dm-serif), Georgia, "Times New Roman", serif;
+  --font-sans: var(--font-manrope), system-ui, -apple-system, "Segoe UI", sans-serif;
+
+  --animate-pulse-run: pulse-run 7s linear 2 both;
+}
+
+/* Pulso de luz percorrendo um fio: entra e sai com fade; após 2 voltas some de vez */
+@keyframes pulse-run {
+  0% {
+    stroke-dashoffset: 0;
+    opacity: 0;
+  }
+  8%,
+  85% {
+    opacity: 1;
+  }
+  100% {
+    stroke-dashoffset: -1600;
+    opacity: 0;
+  }
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+    -webkit-tap-highlight-color: rgb(56 198 244 / 0.15);
+  }
+  /* O botão fixo do celular não pode esconder o elemento focado */
+  @media (max-width: 767px) {
+    html {
+      scroll-padding-bottom: 6rem;
+    }
+  }
+  body {
+    background: var(--color-abyss);
+    color: var(--color-mist);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-display);
+    color: var(--color-cream);
+    font-weight: 400;
+    text-wrap: balance;
+    overflow-wrap: break-word;
+  }
+  p {
+    text-wrap: pretty;
+  }
+  :focus-visible {
+    outline: 2px solid var(--color-fiber);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+  ::selection {
+    background: var(--color-fiber);
+    color: var(--color-abyss);
+  }
+  [id] {
+    scroll-margin-top: 1.5rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+@layer components {
+  /* Selo da capa: caixa alta espaçada em dourado, entre dois fios */
+  .seal {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.875rem;
+    font-size: 0.6875rem;
+    font-weight: 600;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--color-gold);
+  }
+  .seal::before,
+  .seal::after {
+    content: "";
+    height: 1px;
+    width: 2rem;
+    background: currentColor;
+    opacity: 0.7;
+  }
+  /* No celular o selo fica numa linha só: fio apenas à esquerda */
+  @media (max-width: 639px) {
+    .seal {
+      gap: 0.625rem;
+      font-size: 0.625rem;
+      letter-spacing: 0.2em;
+    }
+    .seal::before {
+      width: 1.25rem;
+    }
+    .seal::after {
+      display: none;
+    }
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6rem;
+    min-height: 3.25rem;
+    padding: 0.875rem 1.5rem;
+    border-radius: 0.625rem;
+    font-weight: 700;
+    font-size: 1rem;
+    line-height: 1.2;
+    text-align: center;
+    transition:
+      transform 0.15s ease,
+      background-color 0.2s ease,
+      box-shadow 0.2s ease;
+    touch-action: manipulation;
+  }
+  .btn:active {
+    transform: translateY(1px);
+  }
+  .btn-gold {
+    background: var(--color-gold);
+    color: var(--color-abyss);
+    box-shadow: 0 10px 30px -12px rgb(201 165 92 / 0.65);
+  }
+  .btn-gold:hover {
+    background: var(--color-gold-soft);
+  }
+  .btn-gold[aria-disabled="true"] {
+    cursor: progress;
+    opacity: 0.85;
+  }
+  .btn-outline {
+    border: 1px solid rgb(244 235 217 / 0.35);
+    color: var(--color-cream);
+  }
+  .btn-outline:hover {
+    border-color: var(--color-cream);
+    background: rgb(244 235 217 / 0.06);
+  }
+  .btn-whatsapp {
+    background: var(--color-whatsapp);
+    color: var(--color-whatsapp-ink);
+    font-size: clamp(1rem, 4.2vw, 1.125rem);
+    white-space: nowrap;
+    min-height: 3.75rem;
+    box-shadow: 0 14px 34px -14px rgb(37 211 102 / 0.7);
+  }
+  .btn-whatsapp:hover {
+    background: #3ee07a;
+  }
+
+  .field {
+    width: 100%;
+    min-height: 3rem;
+    padding: 0.75rem 0.9rem;
+    border-radius: 0.5rem;
+    border: 1px solid rgb(220 228 242 / 0.22);
+    background: rgb(7 19 49 / 0.65);
+    color: var(--color-cream);
+    font-size: 1rem;
+    transition:
+      border-color 0.15s ease,
+      box-shadow 0.15s ease;
+  }
+  .field::placeholder {
+    color: rgb(169 183 208 / 0.75);
+  }
+  .field:hover {
+    border-color: rgb(220 228 242 / 0.4);
+  }
+  .field:focus {
+    outline: none;
+    border-color: var(--color-fiber);
+    box-shadow: 0 0 0 3px rgb(56 198 244 / 0.25);
+  }
+  .field[aria-invalid="true"] {
+    border-color: var(--color-danger);
+  }
+  select.field {
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' fill='none'%3E%3Cpath d='m1 1.5 5 5 5-5' stroke='%23C9A55C' stroke-width='1.6' stroke-linecap='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.9rem center;
+    padding-right: 2.5rem;
+  }
+  select.field option {
+    background: var(--color-abyss);
+    color: var(--color-cream);
+  }
+}
