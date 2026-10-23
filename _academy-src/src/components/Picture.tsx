@@ -3,7 +3,7 @@
 import { BASE_PATH } from "@/lib/site";
 
 type Props = {
-  name: "capa-ebook" | "jason";
+  name: "capa-ebook" | "jason" | "jason-imersao";
   widths: [number, number];
   ratio: number; // altura / largura
   alt: string;

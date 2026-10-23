@@ -62,7 +62,7 @@ export function Hero() {
         <figure className="relative mx-auto w-full max-w-sm lg:max-w-none">
           <div className="relative overflow-hidden rounded-2xl border border-gold/30">
             <Picture
-              name="jason"
+              name="jason-imersao"
               widths={[420, 840]}
               ratio={5 / 4}
               alt="Dr. Jason de Cerqueira Cesar"
