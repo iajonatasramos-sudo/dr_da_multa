@@ -6,16 +6,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dr. Da Multa Telecom | Links</title>
     <meta name="description"
-        content="Fale com um especialista em direito das telecomunicações, baixe o e-book para advogados ou conheça a Imersão Telecom ADV.">
+        content="Vinte anos dentro das operadoras. Fale com um especialista, baixe o e-book para advogados ou entre na lista da Imersão Telecom ADV.">
     <link rel="canonical" href="https://drdamultatelecom.com.br/links/">
     <meta name="robots" content="noindex, follow">
 
     <meta property="og:type" content="website">
-    <meta property="og:title" content="Dr. Da Multa Telecom | Links">
-    <meta property="og:description"
-        content="Fale com um especialista, baixe o e-book para advogados ou conheça a Imersão Telecom ADV.">
+    <meta property="og:title" content="Dr. Da Multa Telecom">
+    <meta property="og:description" content="Vinte anos dentro das operadoras. Hoje, do seu lado.">
     <meta property="og:url" content="https://drdamultatelecom.com.br/links/">
-    <meta property="og:image" content="https://drdamultatelecom.com.br/assets/img/Logo-e-Simbolos.png">
+    <meta property="og:image"
+        content="https://drdamultatelecom.com.br/assets/img/arquivo/telephone-exchange-montreal-qe3-33.jpg">
 
     <link rel="icon" href="/assets/img/cropped-Logo-e-Simbolos-32x32.png" sizes="32x32">
     <link rel="apple-touch-icon" href="/assets/img/cropped-Logo-e-Simbolos-180x180.png">
@@ -23,20 +23,33 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Playfair+Display:wght@500;600;700&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Playfair+Display:wght@600;700&display=swap"
         rel="stylesheet">
 
     <style>
-        /* Paleta e tipografia do site principal. Cantos retos, como no resto do site. */
+        /* ============================================================
+           Direção: "A frase é a composição" (seed 1216794608).
+           A ideia: os vinte anos do Jason dentro das operadoras viram a
+           frase da página, e a tira de foto mostra o lugar onde eles
+           foram passados — uma central telefônica por dentro.
+           Paleta e tipografia mantidas da marca.
+           ============================================================ */
+
         :root {
-            --primary: #020F27;
-            --primary-dark: #010A1A;
-            --primary-medium: #0A2A5C;
-            --secondary: #B8965A;
-            --secondary-light: #D4B87A;
-            --white: #ffffff;
-            --mist: #BFCBDE;
-            --whatsapp: #25D366;
+            --ground: #020F27;
+            --field: #061A3D;
+            --ink: #FFFFFF;
+            --ink-dim: #9FB2CE;
+            --accent: #B8965A;
+            --whatsapp: #1FA855;
+
+            --passo-display: clamp(2.9rem, 11.4vw, 9.4rem);
+            --passo-frase: clamp(1.45rem, 4vw, 2.1rem);
+            --passo-corpo: 1.125rem;
+            --passo-menor: 0.95rem;
+            --passo-credito: 1rem;
+
+            --margem: clamp(1.25rem, 5vw, 3.5rem);
         }
 
         *,
@@ -51,211 +64,351 @@
 
         body {
             margin: 0;
-            min-height: 100svh;
-            /* Luz suave vindo do alto, sobre o azul do site. */
-            background:
-                radial-gradient(120% 70% at 50% 0%, #0A2A5C 0%, #041533 45%, #020F27 100%);
-            background-color: var(--primary);
-            color: var(--white);
+            background: var(--ground);
+            color: var(--ink);
             font-family: 'Lato', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            font-size: var(--passo-corpo);
+            line-height: 1.5;
             -webkit-font-smoothing: antialiased;
-            display: flex;
-            flex-direction: column;
         }
 
-        .conteudo {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            width: 100%;
-            max-width: 30rem;
-            margin: 0 auto;
-            padding: 2.5rem 1.25rem 2rem;
+        a {
+            color: inherit;
         }
 
-        /* ---------- Cabeçalho ---------- */
+        :focus-visible {
+            outline: 3px solid var(--accent);
+            outline-offset: 3px;
+        }
 
-        .logo {
-            width: 124px;
-            height: auto;
+        img {
             display: block;
+            max-width: 100%;
         }
 
-        .nome {
-            margin: 1.1rem 0 0;
-            font-family: 'Playfair Display', Georgia, serif;
-            font-weight: 600;
-            font-size: 1.7rem;
-            line-height: 1.15;
-            text-align: center;
-            letter-spacing: -0.01em;
+        /* Um tratamento só para todas as fotos de arquivo: cinza, assentadas no azul. */
+        .arquivo {
+            filter: grayscale(1) contrast(1.08) brightness(.92);
         }
 
-        .oab {
-            margin: .55rem 0 0;
-            font-size: .82rem;
-            letter-spacing: .14em;
-            text-transform: uppercase;
-            color: var(--secondary-light);
-            text-align: center;
-        }
+        /* ---------- Marca ---------- */
 
-        /* Fio dourado, o mesmo detalhe que o site usa para separar blocos. */
-        .fio {
-            width: 3.5rem;
-            height: 1px;
-            margin: 1.4rem 0 0;
-            background: linear-gradient(90deg, transparent, var(--secondary), transparent);
-            border: 0;
-        }
-
-        .chamada {
-            margin: 1.4rem 0 0;
-            font-size: 1rem;
-            line-height: 1.55;
-            text-align: center;
-            color: var(--mist);
-            max-width: 24rem;
-        }
-
-        /* ---------- Links ---------- */
-
-        .links {
-            width: 100%;
-            margin-top: 2.25rem;
-            display: flex;
-            flex-direction: column;
-            gap: .85rem;
-        }
-
-        .link {
+        .marca {
             display: flex;
             align-items: center;
-            gap: .95rem;
+            gap: .7rem;
+            padding: var(--margem) var(--margem) 0;
+        }
+
+        .marca img {
+            width: 44px;
+            height: auto;
+        }
+
+        .marca span {
+            font-size: var(--passo-menor);
+            letter-spacing: .01em;
+        }
+
+        /* ---------- A frase ---------- */
+
+        .frase {
+            margin: clamp(2.5rem, 9vw, 5.5rem) 0 0;
+            padding: 0 var(--margem);
+            font-family: 'Playfair Display', Georgia, serif;
+            font-weight: 700;
+            font-size: var(--passo-display);
+            line-height: .95;
+            letter-spacing: -0.035em;
+        }
+
+        /* A tira fica na linha da frase, alta como as maiúsculas. */
+        .linha2 {
+            white-space: nowrap;
+        }
+
+        .tira {
+            display: inline-block;
+            vertical-align: baseline;
+            width: 2.1em;
+            height: .74em;
+            margin: 0 .16em -0.02em 0;
+            overflow: hidden;
+            background: var(--field);
+        }
+
+        .tira img {
             width: 100%;
-            min-height: 4.25rem;
-            padding: .9rem 1.1rem;
-            border: 1px solid rgba(184, 150, 90, .45);
-            background: rgba(1, 10, 26, .55);
-            color: var(--white);
+            height: 100%;
+            object-fit: cover;
+            object-position: 50% 42%;
+        }
+
+        .apoio {
+            margin: clamp(1.5rem, 4vw, 2.25rem) 0 0;
+            padding: 0 var(--margem);
+            max-width: 34ch;
+            font-size: var(--passo-frase);
+            line-height: 1.25;
+            color: var(--ink);
+        }
+
+        .botao {
+            display: inline-block;
+            margin: clamp(1.75rem, 4vw, 2.5rem) 0 0;
+            margin-left: var(--margem);
+            padding: .95rem 1.6rem;
+            background: var(--accent);
+            color: var(--ground);
+            font-weight: 700;
+            font-size: var(--passo-corpo);
             text-decoration: none;
-            transition: background-color .25s ease, border-color .25s ease, transform .15s ease;
+            transition: transform .18s ease, background-color .25s ease;
         }
 
-        .link:hover,
-        .link:focus-visible {
-            background: rgba(10, 42, 92, .75);
-            border-color: var(--secondary);
+        .botao:hover,
+        .botao:focus-visible {
+            background: #D4B87A;
         }
 
-        .link:active {
+        .botao:active {
             transform: translateY(1px);
         }
 
-        .link:focus-visible {
-            outline: 2px solid var(--secondary-light);
-            outline-offset: 2px;
+        .escolha {
+            margin: clamp(2.5rem, 7vw, 4rem) 0 clamp(1rem, 3vw, 1.5rem);
+            padding: 0 var(--margem);
+            color: var(--ink-dim);
+            font-size: var(--passo-corpo);
         }
 
-        .link .icone {
-            flex: 0 0 auto;
-            width: 2.4rem;
-            height: 2.4rem;
-            display: grid;
-            place-items: center;
-            border: 1px solid rgba(184, 150, 90, .4);
-            color: var(--secondary-light);
-        }
+        /* ---------- Os três destinos ---------- */
 
-        .link svg {
-            width: 1.3rem;
-            height: 1.3rem;
+        .destinos {
             display: block;
         }
 
-        .link .texto {
-            min-width: 0;
+        .destino {
+            position: relative;
+            display: block;
+            padding: clamp(2.1rem, 6.5vw, 3.4rem) var(--margem);
+            background: var(--field);
+            text-decoration: none;
+            overflow: hidden;
+            isolation: isolate;
         }
 
-        .link .titulo {
+        .destino+.destino {
+            margin-top: 6px;
+        }
+
+        .destino .foto {
+            position: absolute;
+            inset: 0;
+            z-index: -2;
+        }
+
+        .destino .foto img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transform: scale(1.03);
+            transition: transform .7s cubic-bezier(.2, .7, .3, 1);
+        }
+
+        /* Véu chapado (não é gradiente): mantém o texto legível sobre a foto. */
+        .destino::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            z-index: -1;
+            background: rgba(2, 15, 39, .78);
+            transition: background-color .35s ease;
+        }
+
+        .destino:hover .foto img,
+        .destino:focus-visible .foto img {
+            transform: scale(1.07);
+        }
+
+        .destino:hover::after,
+        .destino:focus-visible::after {
+            background: rgba(2, 15, 39, .62);
+        }
+
+        .destino .titulo {
             display: block;
+            font-family: 'Playfair Display', Georgia, serif;
+            font-weight: 600;
+            font-size: var(--passo-frase);
+            line-height: 1.05;
+            letter-spacing: -0.02em;
+        }
+
+        .destino .detalhe {
+            display: block;
+            margin-top: .55rem;
+            max-width: 40ch;
+            color: var(--ink);
+            font-size: var(--passo-corpo);
+        }
+
+        .destino .acao {
+            display: inline-block;
+            margin-top: 1.1rem;
+            padding: .62rem 1.15rem;
+            background: var(--accent);
+            color: var(--ground);
             font-weight: 700;
-            font-size: 1.02rem;
-            line-height: 1.25;
+            font-size: var(--passo-menor);
         }
 
-        .link .sub {
-            display: block;
-            margin-top: .18rem;
-            font-size: .85rem;
-            line-height: 1.35;
-            color: var(--mist);
-        }
-
-        .link .seta {
-            margin-left: auto;
-            flex: 0 0 auto;
-            color: var(--secondary);
-            opacity: .75;
-        }
-
-        /* O do WhatsApp se destaca: é a ação principal de quem tem problema com a operadora. */
-        .link--whatsapp {
-            border-color: rgba(37, 211, 102, .5);
-        }
-
-        .link--whatsapp .icone {
-            border-color: rgba(37, 211, 102, .45);
-            color: var(--whatsapp);
-        }
-
-        .link--whatsapp .seta {
-            color: var(--whatsapp);
-        }
-
-        .link--whatsapp:hover,
-        .link--whatsapp:focus-visible {
-            border-color: var(--whatsapp);
-            background: rgba(37, 211, 102, .14);
+        .destino--whatsapp .acao {
+            background: var(--whatsapp);
+            color: var(--ink);
         }
 
         /* ---------- Rodapé ---------- */
 
         .rodape {
-            padding: 1.5rem 1.25rem calc(1.5rem + env(safe-area-inset-bottom));
-            text-align: center;
-            font-size: .76rem;
-            line-height: 1.6;
-            color: rgba(191, 203, 222, .72);
+            position: relative;
+            padding: clamp(3rem, 9vw, 5rem) var(--margem) calc(2rem + env(safe-area-inset-bottom));
+            overflow: hidden;
+            isolation: isolate;
         }
 
-        .rodape a {
-            color: rgba(212, 184, 122, .9);
-            text-decoration: underline;
-            text-underline-offset: 2px;
+        .rodape .foto {
+            position: absolute;
+            inset: 0;
+            z-index: -2;
         }
 
-        /* ---------- Telas maiores ---------- */
+        .rodape .foto img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
 
-        @media (min-width: 640px) {
-            .logo {
-                width: 140px;
+        .rodape::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            z-index: -1;
+            background: rgba(2, 15, 39, .86);
+        }
+
+        .assinatura {
+            margin: 0;
+            font-family: 'Playfair Display', Georgia, serif;
+            font-weight: 600;
+            font-size: var(--passo-frase);
+            line-height: 1.1;
+            letter-spacing: -0.02em;
+        }
+
+        .endereco {
+            margin: 1rem 0 0;
+            color: var(--ink);
+            font-size: var(--passo-corpo);
+        }
+
+        .credits {
+            margin: 2.25rem 0 0;
+            max-width: 70ch;
+            color: var(--ink-dim);
+            font-size: var(--passo-credito);
+            line-height: 1.55;
+        }
+
+        .credits a {
+            color: var(--ink-dim);
+        }
+
+        /* ---------- Telas largas: a frase respira, os destinos lado a lado ---------- */
+
+        @media (min-width: 900px) {
+            .apoio {
+                max-width: 40ch;
             }
 
-            .nome {
-                font-size: 2rem;
+            .destinos {
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+                gap: 6px;
             }
 
-            .conteudo {
-                padding-top: 3.5rem;
+            .destino+.destino {
+                margin-top: 0;
             }
+
+            .destino {
+                min-height: 20rem;
+                display: flex;
+                flex-direction: column;
+                justify-content: flex-end;
+            }
+        }
+
+        /* ---------- Movimento ---------- */
+
+        [data-anim] .sobe {
+            opacity: 0;
+            transform: translateY(26px);
+        }
+
+        [data-anim] .sobe.dentro {
+            opacity: 1;
+            transform: none;
+            transition: opacity .62s cubic-bezier(.2, .7, .3, 1), transform .62s cubic-bezier(.2, .7, .3, 1);
+        }
+
+        /* Uma foto em movimento lento, para a página não ficar parada. */
+        @keyframes deriva {
+            from {
+                transform: scale(1.04) translate3d(0, 0, 0);
+            }
+
+            to {
+                transform: scale(1.12) translate3d(0, -1.5%, 0);
+            }
+        }
+
+        .rodape .foto img {
+            animation: deriva 26s ease-in-out infinite alternate;
+        }
+
+        /* O movimento-assinatura: a tira abre como um obturador. */
+        [data-anim] .tira {
+            clip-path: inset(0 100% 0 0);
+        }
+
+        [data-anim] .tira.dentro {
+            clip-path: inset(0 0 0 0);
+            transition: clip-path .9s cubic-bezier(.2, .7, .3, 1) .25s;
+        }
+
+        .destino:active {
+            transform: translateY(1px);
         }
 
         @media (prefers-reduced-motion: reduce) {
 
-            .link,
-            .link:active {
+            .rodape .foto img {
+                animation: none;
+            }
+
+            [data-anim] .sobe,
+            [data-anim] .sobe.dentro,
+            [data-anim] .tira,
+            [data-anim] .tira.dentro {
+                opacity: 1;
+                transform: none;
+                clip-path: none;
+                transition: none;
+            }
+
+            .destino .foto img,
+            .destino:active {
                 transition: none;
                 transform: none;
             }
@@ -264,80 +417,130 @@
 </head>
 
 <body>
-    <main class="conteudo">
-        <img class="logo" src="/assets/img/Logo-Branco-transparente.png" width="124" height="124"
-            alt="Dr. Da Multa Telecom" fetchpriority="high">
+    <header class="marca sobe">
+        <img src="/assets/img/cropped-Logo-e-Simbolos-180x180.png" width="44" height="44" alt="">
+        <span>Dr. Da Multa Telecom · Cerqueira Cesar Advocacia</span>
+    </header>
 
-        <h1 class="nome">Dr. Da Multa Telecom</h1>
-        <p class="oab">Cerqueira Cesar Advocacia</p>
-        <hr class="fio">
+    <main>
+        <h1 class="frase sobe">Vinte anos<br><span class="linha2"><span class="tira"><img class="arquivo"
+                        src="/assets/img/arquivo/telephone-exchange-montreal-qe3-33.jpg" width="1920" height="1401"
+                        alt="Sala de uma central telefônica antiga, com as mesas de comutação enfileiradas"
+                        fetchpriority="high" decoding="async"></span>lá dentro.</span></h1>
 
-        <p class="chamada">
-            Advocacia especializada em telecomunicações. Escolha abaixo por onde quer começar.
-        </p>
+        <p class="apoio sobe">O Dr. Jason passou duas décadas dentro das operadoras. Hoje ele atua contra elas, do seu
+            lado.</p>
 
-        <nav class="links" aria-label="Links">
-            <a class="link link--whatsapp"
+        <a class="botao sobe"
+            href="https://wa.me/5511973733366?text=Ol%C3%A1%20*Dr.%20Da%20Multa*%20eu%20gostaria%20de%20falar%20com%20um%20especialista."
+            target="_blank" rel="noopener">Falar com um especialista</a>
+
+        <p class="escolha sobe">Ou escolha por onde começar.</p>
+
+        <nav class="destinos" aria-label="Links">
+            <a class="destino destino--whatsapp sobe"
                 href="https://wa.me/5511973733366?text=Ol%C3%A1%20*Dr.%20Da%20Multa*%20eu%20gostaria%20de%20falar%20com%20um%20especialista."
                 target="_blank" rel="noopener">
-                <span class="icone" aria-hidden="true">
-                    <svg viewBox="0 0 24 24" fill="currentColor">
-                        <path
-                            d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38a9.87 9.87 0 0 0 4.74 1.21h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2Zm0 18.15h-.01a8.2 8.2 0 0 1-4.19-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.23 8.23 0 0 1-1.26-4.38c0-4.54 3.7-8.23 8.25-8.23 2.2 0 4.27.86 5.83 2.42a8.19 8.19 0 0 1 2.41 5.82c0 4.54-3.7 8.23-8.24 8.23Zm4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.13-.17.24-.64.8-.79.97-.14.16-.29.18-.54.06-.25-.13-1.05-.39-2-1.23-.74-.66-1.24-1.47-1.38-1.72-.15-.25-.02-.38.11-.5.11-.11.25-.29.37-.43.13-.15.17-.25.25-.41.08-.17.04-.31-.02-.43-.06-.12-.56-1.34-.76-1.84-.2-.48-.41-.42-.56-.42l-.48-.01c-.17 0-.43.06-.66.31-.23.25-.86.85-.86 2.07 0 1.22.89 2.4 1.01 2.56.12.17 1.75 2.67 4.23 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.47-.07 1.47-.6 1.67-1.18.21-.58.21-1.07.15-1.18-.06-.1-.23-.17-.48-.29Z" />
-                    </svg>
+                <span class="foto" aria-hidden="true">
+                    <img class="arquivo" src="/assets/img/arquivo/women-working-at-the-u-s-capitol.jpg" width="1024"
+                        height="668" alt="" loading="lazy" decoding="async">
                 </span>
-                <span class="texto">
-                    <span class="titulo">Falar no WhatsApp</span>
-                    <span class="sub">Problema com a operadora? Fale com um especialista</span>
-                </span>
-                <svg class="seta" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                    stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                    <path d="m9 18 6-6-6-6" />
-                </svg>
+                <span class="titulo sobe">Negativado, multado ou cobrado a mais?</span>
+                <span class="detalhe sobe">Conte o seu caso no WhatsApp e um especialista responde.</span>
+                <span class="acao sobe">Falar agora</span>
             </a>
 
-            <a class="link" href="/academy/">
-                <span class="icone" aria-hidden="true">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
-                        stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" />
-                        <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2Z" />
-                    </svg>
+            <a class="destino sobe" href="/academy/">
+                <span class="foto" aria-hidden="true">
+                    <img class="arquivo"
+                        src="/assets/img/arquivo/colleges-and-universities-miscellaneous-university-of-utah.jpg"
+                        width="1920" height="1254" alt="" loading="lazy" decoding="async">
                 </span>
-                <span class="texto">
-                    <span class="titulo">E-book para advogados</span>
-                    <span class="sub">O Mar Azul da Advocacia · download gratuito</span>
-                </span>
-                <svg class="seta" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                    stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                    <path d="m9 18 6-6-6-6" />
-                </svg>
+                <span class="titulo sobe">Advogado? O mercado que ninguém atende</span>
+                <span class="detalhe sobe">E-book gratuito sobre uma área com 1,3 milhão de reclamações por ano na
+                    Anatel.</span>
+                <span class="acao sobe">Baixar o e-book</span>
             </a>
 
-            <a class="link" href="/academy/imersao/">
-                <span class="icone" aria-hidden="true">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
-                        stroke-linecap="round" stroke-linejoin="round">
-                        <rect x="3" y="5" width="18" height="16" rx="1" />
-                        <path d="M3 10h18M8 3v4M16 3v4" />
-                    </svg>
+            <a class="destino sobe" href="/academy/imersao/">
+                <span class="foto" aria-hidden="true">
+                    <img class="arquivo" src="/assets/img/arquivo/permanent-repair-of-a-10-pair-copper.jpg" width="1920"
+                        height="1080" alt="" loading="lazy" decoding="async">
                 </span>
-                <span class="texto">
-                    <span class="titulo">Imersão Telecom ADV</span>
-                    <span class="sub">05 e 06/12 · sábado e domingo, 10h às 16h</span>
-                </span>
-                <svg class="seta" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                    stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                    <path d="m9 18 6-6-6-6" />
-                </svg>
+                <span class="titulo sobe">Imersão Telecom ADV</span>
+                <span class="detalhe sobe">05 e 06 de dezembro, sábado e domingo, das 10h às 16h.
+                    <span id="contagem"></span></span>
+                <span class="acao sobe">Entrar na lista</span>
             </a>
         </nav>
     </main>
 
     <footer class="rodape">
-        Cerqueira Cesar Advocacia — devidamente registrado na OAB<br>
-        <a href="/">drdamultatelecom.com.br</a>
+        <span class="foto" aria-hidden="true">
+            <img class="arquivo" src="/assets/img/arquivo/manhole-cover-post-office-copper-telephone-cable.jpg"
+                width="1920" height="937" alt="" loading="lazy" decoding="async">
+        </span>
+        <p class="assinatura sobe">Cerqueira Cesar Advocacia</p>
+        <p class="endereco sobe">
+            Av. Cmte. Sampaio, 366 — Km 18, Osasco, SP · <a href="/">drdamultatelecom.com.br</a><br>
+            Devidamente registrado na OAB.
+        </p>
+        <p class="credits">Imagens: <a
+                href="https://commons.wikimedia.org/wiki/File:Telephone_exchange_Montreal_QE3_33.jpg">“Telephone
+                exchange Montreal QE3 33”</a> por Various photographers for Cassell &amp; Co., <a
+                href="https://creativecommons.org/publicdomain/mark/1.0/">domínio público</a>, via Wikimedia Commons;
+            <a
+                href="https://commons.wikimedia.org/wiki/File:Women_working_at_the_U.S._Capitol_switchboard,_Washington,_D.C._04925v.jpg">“Women
+                working at the U.S. Capitol switchboard”</a> por Trikosko, Marion S., <a
+                href="https://creativecommons.org/publicdomain/mark/1.0/">domínio público</a>, via Wikimedia Commons; <a
+                href="https://commons.wikimedia.org/wiki/File:Colleges_and_Universities_-_Miscellaneous_-_University_of_Utah_detachment_cable_splicing,_telephone_class._July_15,_1918_-_NARA_-_26431132.jpg">“University
+                of Utah detachment cable splicing, telephone class”</a>, <a
+                href="https://creativecommons.org/publicdomain/mark/1.0/">domínio público</a>, via Wikimedia Commons; <a
+                href="https://commons.wikimedia.org/wiki/File:Permanent_repair_of_a_10-pair_copper_telephone_cable.jpg">“Permanent
+                repair of a 10-pair copper telephone cable”</a> por Lafi90, <a
+                href="https://creativecommons.org/publicdomain/zero/1.0/deed.en">CC0</a>, via Wikimedia Commons; <a
+                href="https://commons.wikimedia.org/wiki/File:Manhole_Cover_-_Post_Office_Copper_Telephone_Cable_Pit.jpg">“Manhole
+                Cover — Post Office Copper Telephone Cable Pit”</a> por FirstPrinciples, <a
+                href="https://creativecommons.org/publicdomain/zero/1.0/deed.en">CC0</a>, via Wikimedia Commons.
+        </p>
     </footer>
+
+    <script>
+        // Sem script, tudo aparece normalmente: a animação só começa quando o JS assume.
+        document.documentElement.setAttribute('data-anim', '');
+
+        // Quantos dias faltam para a imersão. Muda a cada visita; a data continua escrita acima.
+        (function () {
+            var alvo = new Date('2026-12-05T10:00:00-03:00');
+            var dias = Math.ceil((alvo - Date.now()) / 86400000);
+            var el = document.getElementById('contagem');
+            if (el && dias > 0) el.textContent = dias === 1 ? 'Falta 1 dia.' : 'Faltam ' + dias + ' dias.';
+        })();
+
+        // Rede de segurança: se o observador não disparar, tudo aparece mesmo assim.
+        var alvos = document.querySelectorAll('.sobe, .tira');
+        setTimeout(function () {
+            alvos.forEach(function (el) { el.classList.add('dentro'); });
+        }, 1400);
+
+        if (!('IntersectionObserver' in window)) {
+            alvos.forEach(function (el) { el.classList.add('dentro'); });
+        } else {
+            var obs = new IntersectionObserver(function (entradas) {
+                entradas.forEach(function (e) {
+                    if (!e.isIntersecting) return;
+                    var el = e.target;
+                    var irmaos = Array.prototype.slice.call(el.parentNode.children).filter(function (n) {
+                        return n.classList && n.classList.contains('sobe');
+                    });
+                    el.style.transitionDelay = (Math.max(0, irmaos.indexOf(el)) * 75) + 'ms';
+                    el.classList.add('dentro');
+                    obs.unobserve(el);
+                });
+            }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+            alvos.forEach(function (el) { obs.observe(el); });
+        }
+    </script>
 </body>
 
 </html>
