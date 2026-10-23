@@ -1,3 +1,4 @@
+import { BASE_PATH } from "@/lib/site";
 import { LeadForm } from "./LeadForm";
 
 /**
@@ -11,18 +12,18 @@ function HeroArt() {
       <source
         media="(min-width: 768px)"
         type="image/avif"
-        srcSet="/img/hero-desktop-960.avif 960w, /img/hero-desktop-1672.avif 1672w"
+        srcSet={`${BASE_PATH}/img/hero-desktop-960.avif 960w, ${BASE_PATH}/img/hero-desktop-1672.avif 1672w`}
         sizes="(min-width: 1280px) 90vw, 100vw"
       />
       <source
         media="(min-width: 768px)"
-        srcSet="/img/hero-desktop-960.webp 960w, /img/hero-desktop-1672.webp 1672w"
+        srcSet={`${BASE_PATH}/img/hero-desktop-960.webp 960w, ${BASE_PATH}/img/hero-desktop-1672.webp 1672w`}
         sizes="(min-width: 1280px) 90vw, 100vw"
       />
-      <source type="image/avif" srcSet="/img/hero-mobile-480.avif 480w, /img/hero-mobile-941.avif 941w" sizes="100vw" />
+      <source type="image/avif" srcSet={`${BASE_PATH}/img/hero-mobile-480.avif 480w, ${BASE_PATH}/img/hero-mobile-941.avif 941w`} sizes="100vw" />
       <img
-        src="/img/hero-mobile-480.webp"
-        srcSet="/img/hero-mobile-480.webp 480w, /img/hero-mobile-941.webp 941w"
+        src={`${BASE_PATH}/img/hero-mobile-480.webp`}
+        srcSet={`${BASE_PATH}/img/hero-mobile-480.webp 480w, ${BASE_PATH}/img/hero-mobile-941.webp 941w`}
         sizes="100vw"
         width={480}
         height={853}

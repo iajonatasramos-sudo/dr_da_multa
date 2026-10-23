@@ -1,5 +1,7 @@
 // <picture> com AVIF/WebP gerados por scripts/images.mjs (o export estático não otimiza imagens).
 
+import { BASE_PATH } from "@/lib/site";
+
 type Props = {
   name: "capa-ebook" | "jason";
   widths: [number, number];
@@ -11,13 +13,13 @@ type Props = {
 };
 
 export function Picture({ name, widths, ratio, alt, sizes, priority, className }: Props) {
-  const srcSet = (ext: string) => widths.map((w) => `/img/${name}-${w}.${ext} ${w}w`).join(", ");
+  const srcSet = (ext: string) => widths.map((w) => `${BASE_PATH}/img/${name}-${w}.${ext} ${w}w`).join(", ");
   const [small] = widths;
   return (
     <picture>
       <source type="image/avif" srcSet={srcSet("avif")} sizes={sizes} />
       <img
-        src={`/img/${name}-${small}.webp`}
+        src={`${BASE_PATH}/img/${name}-${small}.webp`}
         srcSet={srcSet("webp")}
         sizes={sizes}
         width={small}

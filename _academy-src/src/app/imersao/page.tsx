@@ -25,7 +25,7 @@ export const metadata: Metadata = {
     description,
     images: [{ url: `${BASE_PATH}/img/og-imersao.png`, width: 1200, height: 630, alt: `Imersão Telecom ADV com o Dr. Jason de Cerqueira Cesar, ${datesLong}` }],
   },
-  twitter: { card: "summary_large_image", title, description, images: ["/img/og-imersao.png"] },
+  twitter: { card: "summary_large_image", title, description, images: [`${BASE_PATH}/img/og-imersao.png`] },
 };
 
 const supportLink = whatsappLink("Olá! Tenho uma dúvida sobre a Imersão Telecom ADV.");

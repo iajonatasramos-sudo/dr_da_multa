@@ -38,7 +38,7 @@ export const metadata: Metadata = {
     description,
     images: [{ url: `${BASE_PATH}/img/og.png`, width: 1200, height: 630, alt: "Capa do e-book O Mar Azul da Advocacia" }],
   },
-  twitter: { card: "summary_large_image", title, description, images: ["/img/og.png"] },
+  twitter: { card: "summary_large_image", title, description, images: [`${BASE_PATH}/img/og.png`] },
 };
 
 export const viewport: Viewport = {
