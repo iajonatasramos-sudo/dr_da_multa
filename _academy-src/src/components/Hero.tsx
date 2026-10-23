@@ -40,7 +40,7 @@ export function Hero() {
   return (
     <section
       aria-labelledby="hero-titulo"
-      className="relative isolate overflow-hidden bg-abyss [--hero-trim:max(0px,calc(60.4vw-165px))] [--hero-shift:clamp(0px,calc(103vw-371px),40px)] xl:flex xl:min-h-[50.7vw] xl:items-center"
+      className="relative isolate overflow-hidden bg-abyss [--hero-trim:max(0px,calc(60.4vw-165px))] xl:flex xl:min-h-[50.7vw] xl:items-center"
     >
       {/*
         No desktop a arte ocupa 90% da largura, encostada à direita, para o Jason ficar livre do formulário.
@@ -61,10 +61,12 @@ export function Hero() {
             --hero-trim sobe a arte (e o formulário junto) até o alto da cabeça do Jason ficar
             na altura do fim do título (~165 px do topo): a cabeça fica entre a 2ª linha do
             título e o subtítulo. Na arte, o alto da cabeça está a 60,4% da largura da tela.
-            --hero-shift desce o bloco de texto até 40 px, para o subtítulo ficar na altura do
-            ombro; em telas estreitas desce menos, para não encostar no formulário.
+            O bloco de texto não tem recuo próprio: começa na mesma altura em qualquer
+            celular. Havia um --hero-shift que o descia até 40 px, mas ele crescia com a
+            largura da tela e jogava o fim do título em cima do rosto do Jason (invadia
+            18 px num 360 e 58 px num 430).
           */}
-          <div className="min-h-[calc(118vw-var(--hero-trim))] pt-[var(--hero-shift)] md:min-h-0 md:pt-0">
+          <div className="min-h-[calc(118vw-var(--hero-trim))] md:min-h-0">
             <p className="seal">E-book gratuito · Telecom ADV Academy</p>
 
             <h1 id="hero-titulo" className="mt-6 text-[3.1rem] leading-[0.95] tracking-[-0.01em] sm:text-7xl xl:text-[4.2rem]">
