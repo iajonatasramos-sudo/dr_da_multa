@@ -28,28 +28,21 @@
 
     <style>
         /* ============================================================
-           Direção: "A frase é a composição" (seed 1216794608).
-           A ideia: os vinte anos do Jason dentro das operadoras viram a
-           frase da página, e a tira de foto mostra o lugar onde eles
-           foram passados — uma central telefônica por dentro.
-           Paleta e tipografia mantidas da marca.
+           Página de links, no padrão de cartões com fotografia que o
+           cliente escolheu como referência, na paleta e na tipografia
+           da marca. As fotos são de acervo aberto, do mundo da
+           telefonia, creditadas no rodapé.
            ============================================================ */
 
         :root {
             --ground: #020F27;
-            --field: #061A3D;
             --ink: #FFFFFF;
-            --ink-dim: #9FB2CE;
+            --ink-dim: #AFC0D8;
             --accent: #B8965A;
+            --accent-light: #D4B87A;
             --whatsapp: #1FA855;
-
-            --passo-display: clamp(2.9rem, 11.4vw, 9.4rem);
-            --passo-frase: clamp(1.45rem, 4vw, 2.1rem);
-            --passo-corpo: 1.125rem;
-            --passo-menor: 0.95rem;
-            --passo-credito: 1rem;
-
-            --margem: clamp(1.25rem, 5vw, 3.5rem);
+            --raio: 16px;
+            --margem: clamp(1rem, 4.5vw, 1.5rem);
         }
 
         *,
@@ -67,18 +60,9 @@
             background: var(--ground);
             color: var(--ink);
             font-family: 'Lato', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-            font-size: var(--passo-corpo);
+            font-size: 1rem;
             line-height: 1.5;
             -webkit-font-smoothing: antialiased;
-        }
-
-        a {
-            color: inherit;
-        }
-
-        :focus-visible {
-            outline: 3px solid var(--accent);
-            outline-offset: 3px;
         }
 
         img {
@@ -86,184 +70,167 @@
             max-width: 100%;
         }
 
-        /* Um tratamento só para todas as fotos de arquivo: cinza, assentadas no azul. */
-        .arquivo {
-            filter: grayscale(1) contrast(1.08) brightness(.92);
+        :focus-visible {
+            outline: 3px solid var(--accent-light);
+            outline-offset: 3px;
         }
 
-        /* ---------- Marca ---------- */
-
-        .marca {
-            display: flex;
-            align-items: center;
-            gap: .7rem;
-            padding: var(--margem) var(--margem) 0;
+        .pagina {
+            max-width: 30rem;
+            margin: 0 auto;
+            padding: 0 var(--margem) calc(2.5rem + env(safe-area-inset-bottom));
         }
 
-        .marca img {
-            width: 44px;
-            height: auto;
-        }
+        /* ---------- Topo ---------- */
 
-        .marca span {
-            font-size: var(--passo-menor);
-            letter-spacing: .01em;
-        }
-
-        /* ---------- A frase ---------- */
-
-        .frase {
-            margin: clamp(2.5rem, 9vw, 5.5rem) 0 0;
-            padding: 0 var(--margem);
-            font-family: 'Playfair Display', Georgia, serif;
-            font-weight: 700;
-            font-size: var(--passo-display);
-            line-height: .95;
-            letter-spacing: -0.035em;
-        }
-
-        /* A tira fica na linha da frase, alta como as maiúsculas. */
-        .linha2 {
-            white-space: nowrap;
-        }
-
-        .tira {
-            display: inline-block;
-            vertical-align: baseline;
-            width: 2.1em;
-            height: .74em;
-            margin: 0 .16em -0.02em 0;
-            overflow: hidden;
-            background: var(--field);
-        }
-
-        .tira img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            object-position: 50% 42%;
-        }
-
-        .apoio {
-            margin: clamp(1.5rem, 4vw, 2.25rem) 0 0;
-            padding: 0 var(--margem);
-            max-width: 34ch;
-            font-size: var(--passo-frase);
-            line-height: 1.25;
-            color: var(--ink);
-        }
-
-        .botao {
-            display: inline-block;
-            margin: clamp(1.75rem, 4vw, 2.5rem) 0 0;
-            margin-left: var(--margem);
-            padding: .95rem 1.6rem;
-            background: var(--accent);
-            color: var(--ground);
-            font-weight: 700;
-            font-size: var(--passo-corpo);
-            text-decoration: none;
-            transition: transform .18s ease, background-color .25s ease;
-        }
-
-        .botao:hover,
-        .botao:focus-visible {
-            background: #D4B87A;
-        }
-
-        .botao:active {
-            transform: translateY(1px);
-        }
-
-        .escolha {
-            margin: clamp(2.5rem, 7vw, 4rem) 0 clamp(1rem, 3vw, 1.5rem);
-            padding: 0 var(--margem);
-            color: var(--ink-dim);
-            font-size: var(--passo-corpo);
-        }
-
-        /* ---------- Os três destinos ---------- */
-
-        .destinos {
-            display: block;
-        }
-
-        .destino {
+        .topo {
             position: relative;
-            display: block;
-            padding: clamp(2.1rem, 6.5vw, 3.4rem) var(--margem);
-            background: var(--field);
-            text-decoration: none;
+            margin-top: var(--margem);
+            padding: clamp(2.5rem, 11vw, 4rem) clamp(1.25rem, 6vw, 2rem) clamp(2rem, 8vw, 2.75rem);
+            border-radius: var(--raio);
             overflow: hidden;
             isolation: isolate;
+            text-align: center;
         }
 
-        .destino+.destino {
-            margin-top: 6px;
-        }
-
-        .destino .foto {
+        .topo .fundo,
+        .cartao .fundo {
             position: absolute;
             inset: 0;
             z-index: -2;
         }
 
-        .destino .foto img {
+        .topo .fundo img,
+        .cartao .fundo img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transform: scale(1.03);
-            transition: transform .7s cubic-bezier(.2, .7, .3, 1);
+            filter: grayscale(1) contrast(1.05) brightness(.85);
         }
 
-        /* Véu chapado (não é gradiente): mantém o texto legível sobre a foto. */
-        .destino::after {
+        /* Véu chapado: a fotografia aparece, o texto continua legível. */
+        .topo::after,
+        .cartao::after {
             content: "";
             position: absolute;
             inset: 0;
             z-index: -1;
-            background: rgba(2, 15, 39, .78);
-            transition: background-color .35s ease;
+            background: rgba(2, 15, 39, .74);
+            transition: background-color .4s ease;
         }
 
-        .destino:hover .foto img,
-        .destino:focus-visible .foto img {
+        .topo .logo {
+            width: clamp(92px, 26vw, 116px);
+            height: auto;
+            margin: 0 auto;
+        }
+
+        .frase {
+            margin: clamp(1.1rem, 4vw, 1.5rem) 0 0;
+            font-family: 'Playfair Display', Georgia, serif;
+            font-weight: 700;
+            font-size: clamp(2rem, 8.6vw, 2.6rem);
+            line-height: 1.02;
+            letter-spacing: -0.025em;
+        }
+
+        .apoio {
+            margin: .9rem auto 0;
+            max-width: 30ch;
+            font-size: 1.0625rem;
+            line-height: 1.45;
+        }
+
+        /* ---------- Cartões ---------- */
+
+        .destinos {
+            margin: clamp(1rem, 3.5vw, 1.25rem) 0 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .cartao {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            min-height: 15.5rem;
+            padding: clamp(2rem, 7vw, 2.75rem) clamp(1.25rem, 6vw, 2rem);
+            border-radius: var(--raio);
+            overflow: hidden;
+            isolation: isolate;
+            text-align: center;
+            text-decoration: none;
+            color: var(--ink);
+            transition: transform .18s ease;
+        }
+
+        .destinos li+li {
+            margin-top: clamp(.85rem, 3vw, 1.1rem);
+        }
+
+        .cartao .fundo img {
+            transform: scale(1.02);
+            transition: transform .8s cubic-bezier(.2, .7, .3, 1);
+        }
+
+        .cartao:hover .fundo img,
+        .cartao:focus-visible .fundo img {
             transform: scale(1.07);
         }
 
-        .destino:hover::after,
-        .destino:focus-visible::after {
-            background: rgba(2, 15, 39, .62);
+        .cartao:hover::after,
+        .cartao:focus-visible::after {
+            background: rgba(2, 15, 39, .58);
         }
 
-        .destino .titulo {
+        .cartao:active {
+            transform: translateY(1px);
+        }
+
+        .cartao .titulo {
             display: block;
+            margin: 0 auto;
+            max-width: 15ch;
             font-family: 'Playfair Display', Georgia, serif;
             font-weight: 600;
-            font-size: var(--passo-frase);
-            line-height: 1.05;
+            font-size: clamp(1.45rem, 6.2vw, 1.8rem);
+            line-height: 1.12;
             letter-spacing: -0.02em;
         }
 
-        .destino .detalhe {
+        .cartao .texto {
             display: block;
-            margin-top: .55rem;
-            max-width: 40ch;
-            color: var(--ink);
-            font-size: var(--passo-corpo);
+            margin: .85rem auto 0;
+            max-width: 34ch;
+            font-size: 1rem;
+            line-height: 1.5;
         }
 
-        .destino .acao {
-            display: inline-block;
-            margin-top: 1.1rem;
-            padding: .62rem 1.15rem;
+        /* O disco do "mais", como na referência: gira ao toque. */
+        .cartao .mais {
+            position: absolute;
+            top: clamp(1rem, 4vw, 1.4rem);
+            right: clamp(1rem, 4vw, 1.4rem);
+            width: 2.1rem;
+            height: 2.1rem;
+            border-radius: 50%;
             background: var(--accent);
             color: var(--ground);
+            display: grid;
+            place-items: center;
+            font-size: 1.25rem;
             font-weight: 700;
-            font-size: var(--passo-menor);
+            line-height: 1;
+            transition: transform .35s cubic-bezier(.2, .7, .3, 1);
         }
 
-        .destino--whatsapp .acao {
+        .cartao:hover .mais,
+        .cartao:focus-visible .mais {
+            transform: rotate(90deg);
+        }
+
+        .cartao--whatsapp .mais {
             background: var(--whatsapp);
             color: var(--ink);
         }
@@ -271,81 +238,98 @@
         /* ---------- Rodapé ---------- */
 
         .rodape {
-            position: relative;
-            padding: clamp(3rem, 9vw, 5rem) var(--margem) calc(2rem + env(safe-area-inset-bottom));
-            overflow: hidden;
-            isolation: isolate;
-        }
-
-        .rodape .foto {
-            position: absolute;
-            inset: 0;
-            z-index: -2;
-        }
-
-        .rodape .foto img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .rodape::after {
-            content: "";
-            position: absolute;
-            inset: 0;
-            z-index: -1;
-            background: rgba(2, 15, 39, .86);
+            margin-top: clamp(1.75rem, 6vw, 2.5rem);
+            text-align: center;
         }
 
         .assinatura {
             margin: 0;
             font-family: 'Playfair Display', Georgia, serif;
             font-weight: 600;
-            font-size: var(--passo-frase);
-            line-height: 1.1;
-            letter-spacing: -0.02em;
+            font-size: 1.3rem;
+            line-height: 1.2;
+            letter-spacing: -0.015em;
         }
 
         .endereco {
-            margin: 1rem 0 0;
-            color: var(--ink);
-            font-size: var(--passo-corpo);
+            margin: .7rem 0 0;
+            font-size: 1rem;
+            line-height: 1.55;
+        }
+
+        .endereco a {
+            color: var(--accent-light);
         }
 
         .credits {
-            margin: 2.25rem 0 0;
-            max-width: 70ch;
+            margin: 1.75rem 0 0;
             color: var(--ink-dim);
-            font-size: var(--passo-credito);
-            line-height: 1.55;
+            font-size: 1rem;
+            line-height: 1.5;
+            text-align: left;
         }
 
         .credits a {
             color: var(--ink-dim);
         }
 
-        /* ---------- Telas largas: a frase respira, os destinos lado a lado ---------- */
+        /* ---------- Telas largas: a página ocupa a tela ---------- */
 
         @media (min-width: 900px) {
+            .pagina {
+                max-width: 76rem;
+                padding: 0 clamp(1.5rem, 4vw, 3rem) 3rem;
+            }
+
+            /* O topo sai da coluna e ocupa a largura inteira da tela. */
+            .topo {
+                min-height: 72vh;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                margin-left: calc(50% - 50vw);
+                margin-right: calc(50% - 50vw);
+                margin-top: 0;
+                padding: 4rem clamp(2rem, 6vw, 5rem);
+                border-radius: 0;
+            }
+
+            .topo .logo {
+                width: 132px;
+            }
+
+            .frase {
+                font-size: clamp(3.4rem, 6.4vw, 5.2rem);
+                letter-spacing: -0.035em;
+            }
+
             .apoio {
-                max-width: 40ch;
+                max-width: 44ch;
+                font-size: 1.25rem;
             }
 
             .destinos {
                 display: grid;
                 grid-template-columns: repeat(3, 1fr);
-                gap: 6px;
+                gap: 1.1rem;
             }
 
-            .destino+.destino {
+            .destinos li+li {
                 margin-top: 0;
             }
 
-            .destino {
-                min-height: 20rem;
-                display: flex;
-                flex-direction: column;
-                justify-content: flex-end;
+            .cartao {
+                min-height: 22rem;
+            }
+
+            .cartao .titulo {
+                font-size: 2rem;
+            }
+
+            .credits {
+                max-width: 66ch;
+                margin-left: auto;
+                margin-right: auto;
             }
         }
 
@@ -353,163 +337,111 @@
 
         [data-anim] .sobe {
             opacity: 0;
-            transform: translateY(26px);
+            transform: translateY(22px);
         }
 
         [data-anim] .sobe.dentro {
             opacity: 1;
             transform: none;
-            transition: opacity .62s cubic-bezier(.2, .7, .3, 1), transform .62s cubic-bezier(.2, .7, .3, 1);
-        }
-
-        /* Uma foto em movimento lento, para a página não ficar parada. */
-        @keyframes deriva {
-            from {
-                transform: scale(1.04) translate3d(0, 0, 0);
-            }
-
-            to {
-                transform: scale(1.12) translate3d(0, -1.5%, 0);
-            }
-        }
-
-        .rodape .foto img {
-            animation: deriva 26s ease-in-out infinite alternate;
-        }
-
-        /* O movimento-assinatura: a tira abre como um obturador. */
-        [data-anim] .tira {
-            clip-path: inset(0 100% 0 0);
-        }
-
-        [data-anim] .tira.dentro {
-            clip-path: inset(0 0 0 0);
-            transition: clip-path .9s cubic-bezier(.2, .7, .3, 1) .25s;
-        }
-
-        .destino:active {
-            transform: translateY(1px);
+            transition: opacity .6s cubic-bezier(.2, .7, .3, 1), transform .6s cubic-bezier(.2, .7, .3, 1);
         }
 
         @media (prefers-reduced-motion: reduce) {
 
-            .rodape .foto img {
-                animation: none;
-            }
-
             [data-anim] .sobe,
             [data-anim] .sobe.dentro,
-            [data-anim] .tira,
-            [data-anim] .tira.dentro {
+            .cartao,
+            .cartao .fundo img,
+            .cartao .mais,
+            .cartao:active {
                 opacity: 1;
                 transform: none;
-                clip-path: none;
                 transition: none;
-            }
-
-            .destino .foto img,
-            .destino:active {
-                transition: none;
-                transform: none;
             }
         }
     </style>
 </head>
 
 <body>
-    <header class="marca sobe">
-        <img src="/assets/img/cropped-Logo-e-Simbolos-180x180.png" width="44" height="44" alt="">
-        <span>Dr. Da Multa Telecom · Cerqueira Cesar Advocacia</span>
-    </header>
+    <div class="pagina">
+        <header class="topo sobe">
+            <span class="fundo" aria-hidden="true">
+                <img src="/assets/img/arquivo/telephone-exchange-montreal-qe3-33.jpg" width="1920" height="1401" alt=""
+                    fetchpriority="high" decoding="async">
+            </span>
+            <img class="logo sobe" src="/assets/img/Logo-Branco-transparente.png" width="116" height="116"
+                alt="Dr. Da Multa Telecom">
+            <h1 class="frase sobe">Vinte anos lá dentro.</h1>
+            <p class="apoio sobe">O Dr. Jason passou duas décadas dentro das operadoras. Hoje ele atua contra elas, do seu
+                lado.</p>
+        </header>
 
-    <main>
-        <h1 class="frase sobe">Vinte anos<br><span class="linha2"><span class="tira"><img class="arquivo"
-                        src="/assets/img/arquivo/telephone-exchange-montreal-qe3-33.jpg" width="1920" height="1401"
-                        alt="Sala de uma central telefônica antiga, com as mesas de comutação enfileiradas"
-                        fetchpriority="high" decoding="async"></span>lá dentro.</span></h1>
-
-        <p class="apoio sobe">O Dr. Jason passou duas décadas dentro das operadoras. Hoje ele atua contra elas, do seu
-            lado.</p>
-
-        <a class="botao sobe"
-            href="https://wa.me/5511973733366?text=Ol%C3%A1%20*Dr.%20Da%20Multa*%20eu%20gostaria%20de%20falar%20com%20um%20especialista."
-            target="_blank" rel="noopener">Falar com um especialista</a>
-
-        <p class="escolha sobe">Ou escolha por onde começar.</p>
-
-        <nav class="destinos" aria-label="Links">
-            <a class="destino destino--whatsapp sobe"
+        <ul class="destinos">
+            <li><a class="cartao cartao--whatsapp sobe"
                 href="https://wa.me/5511973733366?text=Ol%C3%A1%20*Dr.%20Da%20Multa*%20eu%20gostaria%20de%20falar%20com%20um%20especialista."
                 target="_blank" rel="noopener">
-                <span class="foto" aria-hidden="true">
-                    <img class="arquivo" src="/assets/img/arquivo/women-working-at-the-u-s-capitol.jpg" width="1024"
-                        height="668" alt="" loading="lazy" decoding="async">
+                <span class="fundo" aria-hidden="true">
+                    <img src="/assets/img/arquivo/women-working-at-the-u-s-capitol.jpg" width="1024" height="668" alt=""
+                        loading="lazy" decoding="async">
                 </span>
-                <span class="titulo sobe">Negativado, multado ou cobrado a mais?</span>
-                <span class="detalhe sobe">Conte o seu caso no WhatsApp e um especialista responde.</span>
-                <span class="acao sobe">Falar agora</span>
-            </a>
+                <span class="mais" aria-hidden="true">+</span>
+                <span class="titulo">Falar no WhatsApp</span>
+                <span class="texto">Negativado, multado ou cobrado a mais? Conte o seu caso e um especialista
+                    responde.</span>
+            </a></li>
 
-            <a class="destino sobe" href="/academy/">
-                <span class="foto" aria-hidden="true">
-                    <img class="arquivo"
-                        src="/assets/img/arquivo/colleges-and-universities-miscellaneous-university-of-utah.jpg"
+            <li><a class="cartao sobe" href="/academy/">
+                <span class="fundo" aria-hidden="true">
+                    <img src="/assets/img/arquivo/colleges-and-universities-miscellaneous-university-of-utah.jpg"
                         width="1920" height="1254" alt="" loading="lazy" decoding="async">
                 </span>
-                <span class="titulo sobe">Advogado? O mercado que ninguém atende</span>
-                <span class="detalhe sobe">E-book gratuito sobre uma área com 1,3 milhão de reclamações por ano na
-                    Anatel.</span>
-                <span class="acao sobe">Baixar o e-book</span>
-            </a>
+                <span class="mais" aria-hidden="true">+</span>
+                <span class="titulo">E-book para advogados</span>
+                <span class="texto">O Mar Azul da Advocacia: um mercado com 1,3 milhão de reclamações por ano na Anatel
+                    e quase nenhum advogado. Download gratuito.</span>
+            </a></li>
 
-            <a class="destino sobe" href="/academy/imersao/">
-                <span class="foto" aria-hidden="true">
-                    <img class="arquivo" src="/assets/img/arquivo/permanent-repair-of-a-10-pair-copper.jpg" width="1920"
-                        height="1080" alt="" loading="lazy" decoding="async">
+            <li><a class="cartao sobe" href="/academy/imersao/">
+                <span class="fundo" aria-hidden="true">
+                    <img src="/assets/img/arquivo/permanent-repair-of-a-10-pair-copper.jpg" width="1920" height="1080"
+                        alt="" loading="lazy" decoding="async">
                 </span>
-                <span class="titulo sobe">Imersão Telecom ADV</span>
-                <span class="detalhe sobe">05 e 06 de dezembro, sábado e domingo, das 10h às 16h.
-                    <span id="contagem"></span></span>
-                <span class="acao sobe">Entrar na lista</span>
-            </a>
-        </nav>
-    </main>
+                <span class="mais" aria-hidden="true">+</span>
+                <span class="titulo">Imersão Telecom ADV</span>
+                <span class="texto">05 e 06 de dezembro, sábado e domingo, das 10h às 16h, online e ao vivo.
+                    <span id="contagem"></span> Entre na lista de espera.</span>
+            </a></li>
+        </ul>
 
-    <footer class="rodape">
-        <span class="foto" aria-hidden="true">
-            <img class="arquivo" src="/assets/img/arquivo/manhole-cover-post-office-copper-telephone-cable.jpg"
-                width="1920" height="937" alt="" loading="lazy" decoding="async">
-        </span>
-        <p class="assinatura sobe">Cerqueira Cesar Advocacia</p>
-        <p class="endereco sobe">
-            Av. Cmte. Sampaio, 366 — Km 18, Osasco, SP · <a href="/">drdamultatelecom.com.br</a><br>
-            Devidamente registrado na OAB.
-        </p>
-        <p class="credits">Imagens: <a
-                href="https://commons.wikimedia.org/wiki/File:Telephone_exchange_Montreal_QE3_33.jpg">“Telephone
-                exchange Montreal QE3 33”</a> por Various photographers for Cassell &amp; Co., <a
-                href="https://creativecommons.org/publicdomain/mark/1.0/">domínio público</a>, via Wikimedia Commons;
-            <a
-                href="https://commons.wikimedia.org/wiki/File:Women_working_at_the_U.S._Capitol_switchboard,_Washington,_D.C._04925v.jpg">“Women
-                working at the U.S. Capitol switchboard”</a> por Trikosko, Marion S., <a
-                href="https://creativecommons.org/publicdomain/mark/1.0/">domínio público</a>, via Wikimedia Commons; <a
-                href="https://commons.wikimedia.org/wiki/File:Colleges_and_Universities_-_Miscellaneous_-_University_of_Utah_detachment_cable_splicing,_telephone_class._July_15,_1918_-_NARA_-_26431132.jpg">“University
-                of Utah detachment cable splicing, telephone class”</a>, <a
-                href="https://creativecommons.org/publicdomain/mark/1.0/">domínio público</a>, via Wikimedia Commons; <a
-                href="https://commons.wikimedia.org/wiki/File:Permanent_repair_of_a_10-pair_copper_telephone_cable.jpg">“Permanent
-                repair of a 10-pair copper telephone cable”</a> por Lafi90, <a
-                href="https://creativecommons.org/publicdomain/zero/1.0/deed.en">CC0</a>, via Wikimedia Commons; <a
-                href="https://commons.wikimedia.org/wiki/File:Manhole_Cover_-_Post_Office_Copper_Telephone_Cable_Pit.jpg">“Manhole
-                Cover — Post Office Copper Telephone Cable Pit”</a> por FirstPrinciples, <a
-                href="https://creativecommons.org/publicdomain/zero/1.0/deed.en">CC0</a>, via Wikimedia Commons.
-        </p>
-    </footer>
+        <footer class="rodape sobe">
+            <p class="assinatura sobe">Cerqueira Cesar Advocacia</p>
+            <p class="endereco sobe">
+                Av. Cmte. Sampaio, 366 — Km 18, Osasco, SP<br>
+                <a href="/">drdamultatelecom.com.br</a> · Devidamente registrado na OAB.
+            </p>
+            <p class="credits">Imagens: <a
+                    href="https://commons.wikimedia.org/wiki/File:Telephone_exchange_Montreal_QE3_33.jpg">“Telephone
+                    exchange Montreal QE3 33”</a> por Various photographers for Cassell &amp; Co., <a
+                    href="https://creativecommons.org/publicdomain/mark/1.0/">domínio público</a>, via Wikimedia
+                Commons; <a
+                    href="https://commons.wikimedia.org/wiki/File:Women_working_at_the_U.S._Capitol_switchboard,_Washington,_D.C._04925v.jpg">“Women
+                    working at the U.S. Capitol switchboard”</a> por Trikosko, Marion S., <a
+                    href="https://creativecommons.org/publicdomain/mark/1.0/">domínio público</a>, via Wikimedia
+                Commons; <a
+                    href="https://commons.wikimedia.org/wiki/File:Colleges_and_Universities_-_Miscellaneous_-_University_of_Utah_detachment_cable_splicing,_telephone_class._July_15,_1918_-_NARA_-_26431132.jpg">“University
+                    of Utah detachment cable splicing, telephone class”</a>, <a
+                    href="https://creativecommons.org/publicdomain/mark/1.0/">domínio público</a>, via Wikimedia
+                Commons; <a
+                    href="https://commons.wikimedia.org/wiki/File:Permanent_repair_of_a_10-pair_copper_telephone_cable.jpg">“Permanent
+                    repair of a 10-pair copper telephone cable”</a> por Lafi90, <a
+                    href="https://creativecommons.org/publicdomain/zero/1.0/deed.en">CC0</a>, via Wikimedia Commons.
+            </p>
+        </footer>
+    </div>
 
     <script>
-        // Sem script, tudo aparece normalmente: a animação só começa quando o JS assume.
         document.documentElement.setAttribute('data-anim', '');
 
-        // Quantos dias faltam para a imersão. Muda a cada visita; a data continua escrita acima.
         (function () {
             var alvo = new Date('2026-12-05T10:00:00-03:00');
             var dias = Math.ceil((alvo - Date.now()) / 86400000);
@@ -517,8 +449,8 @@
             if (el && dias > 0) el.textContent = dias === 1 ? 'Falta 1 dia.' : 'Faltam ' + dias + ' dias.';
         })();
 
+        var alvos = document.querySelectorAll('.sobe');
         // Rede de segurança: se o observador não disparar, tudo aparece mesmo assim.
-        var alvos = document.querySelectorAll('.sobe, .tira');
         setTimeout(function () {
             alvos.forEach(function (el) { el.classList.add('dentro'); });
         }, 1400);
@@ -526,18 +458,15 @@
         if (!('IntersectionObserver' in window)) {
             alvos.forEach(function (el) { el.classList.add('dentro'); });
         } else {
+            var i = 0;
             var obs = new IntersectionObserver(function (entradas) {
                 entradas.forEach(function (e) {
                     if (!e.isIntersecting) return;
-                    var el = e.target;
-                    var irmaos = Array.prototype.slice.call(el.parentNode.children).filter(function (n) {
-                        return n.classList && n.classList.contains('sobe');
-                    });
-                    el.style.transitionDelay = (Math.max(0, irmaos.indexOf(el)) * 75) + 'ms';
-                    el.classList.add('dentro');
-                    obs.unobserve(el);
+                    e.target.style.transitionDelay = (i++ * 80) + 'ms';
+                    e.target.classList.add('dentro');
+                    obs.unobserve(e.target);
                 });
-            }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+            }, { threshold: 0.15, rootMargin: '0px 0px -6% 0px' });
             alvos.forEach(function (el) { obs.observe(el); });
         }
     </script>
