@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dr. Da Multa Telecom | Links</title>
+    <meta name="description"
+        content="Fale com um especialista em direito das telecomunicações, baixe o e-book para advogados ou conheça a Imersão Telecom ADV.">
+    <link rel="canonical" href="https://drdamultatelecom.com.br/links/">
+    <meta name="robots" content="noindex, follow">
+
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Dr. Da Multa Telecom | Links">
+    <meta property="og:description"
+        content="Fale com um especialista, baixe o e-book para advogados ou conheça a Imersão Telecom ADV.">
+    <meta property="og:url" content="https://drdamultatelecom.com.br/links/">
+    <meta property="og:image" content="https://drdamultatelecom.com.br/assets/img/Logo-e-Simbolos.png">
+
+    <link rel="icon" href="/assets/img/cropped-Logo-e-Simbolos-32x32.png" sizes="32x32">
+    <link rel="apple-touch-icon" href="/assets/img/cropped-Logo-e-Simbolos-180x180.png">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Playfair+Display:wght@500;600;700&display=swap"
+        rel="stylesheet">
+
+    <style>
+        /* Paleta e tipografia do site principal. Cantos retos, como no resto do site. */
+        :root {
+            --primary: #020F27;
+            --primary-dark: #010A1A;
+            --primary-medium: #0A2A5C;
+            --secondary: #B8965A;
+            --secondary-light: #D4B87A;
+            --white: #ffffff;
+            --mist: #BFCBDE;
+            --whatsapp: #25D366;
+        }
+
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+        }
+
+        html {
+            -webkit-text-size-adjust: 100%;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100svh;
+            /* Luz suave vindo do alto, sobre o azul do site. */
+            background:
+                radial-gradient(120% 70% at 50% 0%, #0A2A5C 0%, #041533 45%, #020F27 100%);
+            background-color: var(--primary);
+            color: var(--white);
+            font-family: 'Lato', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            -webkit-font-smoothing: antialiased;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .conteudo {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+            max-width: 30rem;
+            margin: 0 auto;
+            padding: 2.5rem 1.25rem 2rem;
+        }
+
+        /* ---------- Cabeçalho ---------- */
+
+        .logo {
+            width: 124px;
+            height: auto;
+            display: block;
+        }
+
+        .nome {
+            margin: 1.1rem 0 0;
+            font-family: 'Playfair Display', Georgia, serif;
+            font-weight: 600;
+            font-size: 1.7rem;
+            line-height: 1.15;
+            text-align: center;
+            letter-spacing: -0.01em;
+        }
+
+        .oab {
+            margin: .55rem 0 0;
+            font-size: .82rem;
+            letter-spacing: .14em;
+            text-transform: uppercase;
+            color: var(--secondary-light);
+            text-align: center;
+        }
+
+        /* Fio dourado, o mesmo detalhe que o site usa para separar blocos. */
+        .fio {
+            width: 3.5rem;
+            height: 1px;
+            margin: 1.4rem 0 0;
+            background: linear-gradient(90deg, transparent, var(--secondary), transparent);
+            border: 0;
+        }
+
+        .chamada {
+            margin: 1.4rem 0 0;
+            font-size: 1rem;
+            line-height: 1.55;
+            text-align: center;
+            color: var(--mist);
+            max-width: 24rem;
+        }
+
+        /* ---------- Links ---------- */
+
+        .links {
+            width: 100%;
+            margin-top: 2.25rem;
+            display: flex;
+            flex-direction: column;
+            gap: .85rem;
+        }
+
+        .link {
+            display: flex;
+            align-items: center;
+            gap: .95rem;
+            width: 100%;
+            min-height: 4.25rem;
+            padding: .9rem 1.1rem;
+            border: 1px solid rgba(184, 150, 90, .45);
+            background: rgba(1, 10, 26, .55);
+            color: var(--white);
+            text-decoration: none;
+            transition: background-color .25s ease, border-color .25s ease, transform .15s ease;
+        }
+
+        .link:hover,
+        .link:focus-visible {
+            background: rgba(10, 42, 92, .75);
+            border-color: var(--secondary);
+        }
+
+        .link:active {
+            transform: translateY(1px);
+        }
+
+        .link:focus-visible {
+            outline: 2px solid var(--secondary-light);
+            outline-offset: 2px;
+        }
+
+        .link .icone {
+            flex: 0 0 auto;
+            width: 2.4rem;
+            height: 2.4rem;
+            display: grid;
+            place-items: center;
+            border: 1px solid rgba(184, 150, 90, .4);
+            color: var(--secondary-light);
+        }
+
+        .link svg {
+            width: 1.3rem;
+            height: 1.3rem;
+            display: block;
+        }
+
+        .link .texto {
+            min-width: 0;
+        }
+
+        .link .titulo {
+            display: block;
+            font-weight: 700;
+            font-size: 1.02rem;
+            line-height: 1.25;
+        }
+
+        .link .sub {
+            display: block;
+            margin-top: .18rem;
+            font-size: .85rem;
+            line-height: 1.35;
+            color: var(--mist);
+        }
+
+        .link .seta {
+            margin-left: auto;
+            flex: 0 0 auto;
+            color: var(--secondary);
+            opacity: .75;
+        }
+
+        /* O do WhatsApp se destaca: é a ação principal de quem tem problema com a operadora. */
+        .link--whatsapp {
+            border-color: rgba(37, 211, 102, .5);
+        }
+
+        .link--whatsapp .icone {
+            border-color: rgba(37, 211, 102, .45);
+            color: var(--whatsapp);
+        }
+
+        .link--whatsapp .seta {
+            color: var(--whatsapp);
+        }
+
+        .link--whatsapp:hover,
+        .link--whatsapp:focus-visible {
+            border-color: var(--whatsapp);
+            background: rgba(37, 211, 102, .14);
+        }
+
+        /* ---------- Rodapé ---------- */
+
+        .rodape {
+            padding: 1.5rem 1.25rem calc(1.5rem + env(safe-area-inset-bottom));
+            text-align: center;
+            font-size: .76rem;
+            line-height: 1.6;
+            color: rgba(191, 203, 222, .72);
+        }
+
+        .rodape a {
+            color: rgba(212, 184, 122, .9);
+            text-decoration: underline;
+            text-underline-offset: 2px;
+        }
+
+        /* ---------- Telas maiores ---------- */
+
+        @media (min-width: 640px) {
+            .logo {
+                width: 140px;
+            }
+
+            .nome {
+                font-size: 2rem;
+            }
+
+            .conteudo {
+                padding-top: 3.5rem;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+
+            .link,
+            .link:active {
+                transition: none;
+                transform: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <main class="conteudo">
+        <img class="logo" src="/assets/img/Logo-Branco-transparente.png" width="124" height="124"
+            alt="Dr. Da Multa Telecom" fetchpriority="high">
+
+        <h1 class="nome">Dr. Da Multa Telecom</h1>
+        <p class="oab">Cerqueira Cesar Advocacia</p>
+        <hr class="fio">
+
+        <p class="chamada">
+            Advocacia especializada em telecomunicações. Escolha abaixo por onde quer começar.
+        </p>
+
+        <nav class="links" aria-label="Links">
+            <a class="link link--whatsapp"
+                href="https://wa.me/5511973733366?text=Ol%C3%A1%20*Dr.%20Da%20Multa*%20eu%20gostaria%20de%20falar%20com%20um%20especialista."
+                target="_blank" rel="noopener">
+                <span class="icone" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="currentColor">
+                        <path
+                            d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38a9.87 9.87 0 0 0 4.74 1.21h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2Zm0 18.15h-.01a8.2 8.2 0 0 1-4.19-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.23 8.23 0 0 1-1.26-4.38c0-4.54 3.7-8.23 8.25-8.23 2.2 0 4.27.86 5.83 2.42a8.19 8.19 0 0 1 2.41 5.82c0 4.54-3.7 8.23-8.24 8.23Zm4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.13-.17.24-.64.8-.79.97-.14.16-.29.18-.54.06-.25-.13-1.05-.39-2-1.23-.74-.66-1.24-1.47-1.38-1.72-.15-.25-.02-.38.11-.5.11-.11.25-.29.37-.43.13-.15.17-.25.25-.41.08-.17.04-.31-.02-.43-.06-.12-.56-1.34-.76-1.84-.2-.48-.41-.42-.56-.42l-.48-.01c-.17 0-.43.06-.66.31-.23.25-.86.85-.86 2.07 0 1.22.89 2.4 1.01 2.56.12.17 1.75 2.67 4.23 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.47-.07 1.47-.6 1.67-1.18.21-.58.21-1.07.15-1.18-.06-.1-.23-.17-.48-.29Z" />
+                    </svg>
+                </span>
+                <span class="texto">
+                    <span class="titulo">Falar no WhatsApp</span>
+                    <span class="sub">Problema com a operadora? Fale com um especialista</span>
+                </span>
+                <svg class="seta" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="m9 18 6-6-6-6" />
+                </svg>
+            </a>
+
+            <a class="link" href="/academy/">
+                <span class="icone" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" />
+                        <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2Z" />
+                    </svg>
+                </span>
+                <span class="texto">
+                    <span class="titulo">E-book para advogados</span>
+                    <span class="sub">O Mar Azul da Advocacia · download gratuito</span>
+                </span>
+                <svg class="seta" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="m9 18 6-6-6-6" />
+                </svg>
+            </a>
+
+            <a class="link" href="/academy/imersao/">
+                <span class="icone" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="3" y="5" width="18" height="16" rx="1" />
+                        <path d="M3 10h18M8 3v4M16 3v4" />
+                    </svg>
+                </span>
+                <span class="texto">
+                    <span class="titulo">Imersão Telecom ADV</span>
+                    <span class="sub">05 e 06/12 · sábado e domingo, 10h às 16h</span>
+                </span>
+                <svg class="seta" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="m9 18 6-6-6-6" />
+                </svg>
+            </a>
+        </nav>
+    </main>
+
+    <footer class="rodape">
+        Cerqueira Cesar Advocacia — devidamente registrado na OAB<br>
+        <a href="/">drdamultatelecom.com.br</a>
+    </footer>
+</body>
+
+</html>
