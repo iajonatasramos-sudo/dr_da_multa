@@ -61,6 +61,15 @@ export const hour = (d: Date) => {
   return m === "00" ? `${h}h` : `${h}h${m}`;
 };
 
+/** Fim de cada dia, pela duração configurada. */
+export const dayEnd = (d: Date) => new Date(d.getTime() + imersao.durationMinutes * 60_000);
+
+/** "10h às 16h" */
+export const hourRange = `${hour(day1)} às ${hour(dayEnd(day1))}`;
+
+/** "sábado e domingo" */
+export const weekdays = `${weekday(day1)} e ${weekday(day2)}`;
+
 /** "01 e 02 de dezembro" (ou "30/11 e 01/12" se os meses forem diferentes). */
 export const datesLong =
   monthName(day1) === monthName(day2)

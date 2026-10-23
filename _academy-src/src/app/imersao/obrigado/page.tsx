@@ -5,7 +5,7 @@ import { FiberWaves } from "@/components/FiberWaves";
 import { IconCalendar, IconCheck, IconDownload, IconWhatsApp } from "@/components/Icons";
 import { JoinInscritosButton } from "@/components/imersao/ThankYou";
 import { imersao } from "@/config/imersao";
-import { day1, dayMonth, googleCalendarUrl, hour, ICS_PATH, sessions } from "@/lib/imersao";
+import { day1, dayMonth, googleCalendarUrl, hourRange, ICS_PATH, sessions } from "@/lib/imersao";
 
 export const metadata: Metadata = {
   title: `Inscrição confirmada · ${imersao.eventName}`,
@@ -15,7 +15,7 @@ export const metadata: Metadata = {
 
 const PREP = [
   "Separe um caderno para as anotações",
-  `Reserve as duas noites a partir das ${hour(day1)} (Brasília)`,
+  `Reserve os dois dias, das ${hourRange} (Brasília)`,
   "Anote suas dúvidas para a sessão de perguntas",
 ];
 

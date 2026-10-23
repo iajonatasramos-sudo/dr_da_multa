@@ -1,13 +1,13 @@
 "use client";
 
 import { imersao } from "@/config/imersao";
-import { money } from "@/lib/imersao";
+import { hourRange, money } from "@/lib/imersao";
 import { IconCheck, IconLock, IconMinus } from "../Icons";
 import { useSales } from "./Clock";
 import { CheckoutButton, Installments, SalesClosed } from "./Purchase";
 
 const FEATURES: { label: string; vipOnly?: boolean }[] = [
-  { label: "2 noites ao vivo" },
+  { label: "2 dias ao vivo, das " + hourRange },
   { label: "Caderno da imersão (PDF)" },
   { label: "Grupo exclusivo dos inscritos" },
   { label: `Gravação dos 2 dias (${imersao.recordingDays} dias de acesso)`, vipOnly: true },

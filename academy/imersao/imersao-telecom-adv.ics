@@ -4,10 +4,10 @@ PRODID:-//Telecom ADV Academy//Imersao//PT-BR
 CALSCALE:GREGORIAN
 METHOD:PUBLISH
 BEGIN:VEVENT
-UID:imersao-telecom-adv-20261201T223000Z-0@telecomadv.academy
-DTSTAMP:20261201T223000Z
-DTSTART:20261201T223000Z
-DTEND:20261202T003000Z
+UID:imersao-telecom-adv-20261205T130000Z-0@telecomadv.academy
+DTSTAMP:20261205T130000Z
+DTSTART:20261205T130000Z
+DTEND:20261205T190000Z
 SUMMARY:Imersão Telecom ADV · Dia 1: O Mercado
 DESCRIPTION:Online e ao vivo. O link da transmissão é enviado no grupo do
  s inscritos e por e-mail.
@@ -19,10 +19,10 @@ DESCRIPTION:Imersão Telecom ADV · Dia 1: O Mercado começa em 1 hora
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:imersao-telecom-adv-20261202T223000Z-1@telecomadv.academy
-DTSTAMP:20261201T223000Z
-DTSTART:20261202T223000Z
-DTEND:20261203T003000Z
+UID:imersao-telecom-adv-20261206T130000Z-1@telecomadv.academy
+DTSTAMP:20261205T130000Z
+DTSTART:20261206T130000Z
+DTEND:20261206T190000Z
 SUMMARY:Imersão Telecom ADV · Dia 2: O Método
 DESCRIPTION:Online e ao vivo. O link da transmissão é enviado no grupo do
  s inscritos e por e-mail.

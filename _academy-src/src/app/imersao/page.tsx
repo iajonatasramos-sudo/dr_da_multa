@@ -6,11 +6,11 @@ import { AudienceSplit, FinalCta, Guarantee, Hero, Hosts, Outcomes, Timeline, To
 import { Tickets } from "@/components/imersao/Tickets";
 import { Faq, type FaqItem } from "@/components/Sections";
 import { imersao } from "@/config/imersao";
-import { datesLong, datesShort, day1, hour } from "@/lib/imersao";
+import { datesLong, datesShort, hourRange, weekdays } from "@/lib/imersao";
 import { whatsappLink, BASE_PATH } from "@/lib/site";
 
 const title = `Imersão Telecom ADV | ${datesShort} · Online e ao vivo`;
-const description = `Em 2 noites ao vivo (${datesLong}, ${hour(day1)} de Brasília), o Dr. Jason de Cerqueira Cesar mostra como atuar no Direito das Telecomunicações: causas, teses e captação de clientes dentro das regras da OAB.`;
+const description = `Em 2 dias ao vivo (${datesLong}, ${weekdays}, das ${hourRange} de Brasília), o Dr. Jason de Cerqueira Cesar mostra como atuar no Direito das Telecomunicações: causas, teses e captação de clientes dentro das regras da OAB.`;
 
 export const metadata: Metadata = {
   title,

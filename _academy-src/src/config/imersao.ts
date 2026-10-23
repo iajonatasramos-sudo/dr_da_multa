@@ -5,11 +5,11 @@
 export const imersao = {
   eventName: "Imersão Telecom ADV",
 
-  /** Início de cada noite. */
-  day1: "2026-12-01T19:30:00-03:00",
-  day2: "2026-12-02T19:30:00-03:00",
-  /** Duração prevista de cada noite, em minutos (usada no Google Agenda e no .ics). */
-  durationMinutes: 120,
+  /** Início de cada dia. Sábado e domingo, das 10h às 16h. */
+  day1: "2026-12-05T10:00:00-03:00",
+  day2: "2026-12-06T10:00:00-03:00",
+  /** Duração de cada dia, em minutos (usada no Google Agenda e no .ics). 10h às 16h = 360. */
+  durationMinutes: 360,
 
   format: "Online e ao vivo",
 
@@ -30,7 +30,7 @@ export const imersao = {
   },
 
   /** Depois deste horário: "Inscrições encerradas" + botão da lista de espera. */
-  salesClose: "2026-12-01T18:00:00-03:00",
+  salesClose: "2026-12-05T08:30:00-03:00",
 
   /** Mostra o selo "O valor do ingresso vira desconto no curso". */
   ticketCreditOnCourse: false,

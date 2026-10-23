@@ -1,5 +1,6 @@
 import { imersao } from "@/config/imersao";
-import { datesLong, datesShort, day1, day2, dayMonth, hour, weekday } from "@/lib/imersao";
+import { datesLong, datesShort, day1, day2, dayMonth, hourRange, weekday, weekdays } from "@/lib/imersao";
+import { hour, dayEnd } from "@/lib/imersao";
 import { FiberWaves } from "../FiberWaves";
 import { IconBroadcast, IconCalendar, IconCheck, IconClock, IconTag, IconX } from "../Icons";
 import { Picture } from "../Picture";
@@ -11,7 +12,7 @@ export function TopBar() {
     <div className="sticky top-0 z-30 border-b border-gold/20 bg-abyss-deep/95 backdrop-blur">
       <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-center gap-x-4 gap-y-0.5 px-4 py-2 text-center text-xs sm:justify-between sm:text-sm">
         <p className="text-mist">
-          Imersão online · <span className="text-cream">{datesLong}</span> · {hour(day1)} (Brasília)
+          Imersão online · <span className="text-cream">{datesLong}</span> · {hourRange} (Brasília)
         </p>
         <p className="text-gold">
           Começa em <Countdown target={day1} label="para o Dia 1" size="sm" className="font-semibold" />
@@ -23,8 +24,8 @@ export function TopBar() {
 
 export function Hero() {
   const infos = [
-    { icon: IconCalendar, text: datesShort },
-    { icon: IconClock, text: `${hour(day1)} (Brasília)` },
+    { icon: IconCalendar, text: `${datesShort} · ${weekdays}` },
+    { icon: IconClock, text: `${hourRange} (Brasília)` },
     { icon: IconBroadcast, text: imersao.format },
     { icon: IconTag, text: "Vagas pelo valor de lançamento" },
   ];
@@ -40,7 +41,7 @@ export function Hero() {
             Imersão <span className="block">Telecom ADV</span>
           </h1>
           <p className="mt-6 max-w-xl text-[1.05rem] leading-relaxed text-mist sm:text-lg">
-            Em 2 noites, o Dr. Jason de Cerqueira Cesar mostra como atuar no Direito das Telecomunicações: as causas, as
+            Em 2 dias, o Dr. Jason de Cerqueira Cesar mostra como atuar no Direito das Telecomunicações: as causas, as
             teses e o caminho para construir uma carteira de clientes nesse mar azul da advocacia.
           </p>
           <ul className="mt-6 grid grid-cols-2 gap-x-4 gap-y-2.5 text-sm text-cream sm:flex sm:flex-wrap sm:gap-x-6">
@@ -132,13 +133,13 @@ const DAYS = [
   },
 ];
 
-/** As duas noites como dois pontos de luz no mesmo fio de fibra. */
+/** Os dois dias como dois pontos de luz no mesmo fio de fibra. */
 export function Timeline() {
   return (
     <section aria-labelledby="programa-titulo" className="mx-auto max-w-4xl px-5 py-16 sm:py-24">
       <p className="seal">Programação</p>
       <h2 id="programa-titulo" className="mt-4 text-4xl leading-tight sm:text-5xl">
-        Duas noites, do mercado ao método
+        Dois dias, do mercado ao método
       </h2>
       <ol className="relative mt-12 space-y-14 pl-10 sm:pl-14">
         <span
@@ -154,7 +155,7 @@ export function Timeline() {
               <span className="size-2.5 rounded-full bg-fiber shadow-[0_0_14px_4px_rgb(56_198_244/0.55)] sm:size-3" />
             </span>
             <p className="text-sm font-semibold tracking-[0.16em] text-gold uppercase">
-              Dia {i + 1} · {dayMonth(d.date)} · {weekday(d.date)}, {hour(d.date)}
+              Dia {i + 1} · {dayMonth(d.date)} · {weekday(d.date)}, {hour(d.date)} às {hour(dayEnd(d.date))}
             </p>
             <h3 className="mt-2 text-3xl sm:text-4xl">{d.name}</h3>
             <ul className="mt-5 space-y-3">
@@ -323,7 +324,7 @@ export function FinalCta() {
       <FiberWaves className="absolute inset-0 -z-10 h-full w-full opacity-60" />
       <div className="mx-auto flex max-w-4xl flex-col items-center px-5 py-20 text-center sm:py-28">
         <h2 id="final-titulo" className="text-4xl leading-[1.05] sm:text-6xl">
-          Daqui a 2 noites, você pode estar enxergando{" "}
+          Em 2 dias, você pode estar enxergando{" "}
           <span className="text-fiber">um mercado que quase ninguém vê.</span>
         </h2>
         <Countdown target={day1} label="para o Dia 1" className="mt-10" />
