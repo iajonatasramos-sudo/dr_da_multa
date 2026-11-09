@@ -18,6 +18,7 @@ export const site = {
   supportWhatsapp: clean(process.env.NEXT_PUBLIC_SUPPORT_WHATSAPP) || "5511973733366",
   youtubeVideoId: clean(process.env.NEXT_PUBLIC_YOUTUBE_VIDEO_ID),
   metaPixelId: clean(process.env.NEXT_PUBLIC_META_PIXEL_ID),
+  fbDomainVerification: clean(process.env.NEXT_PUBLIC_FB_DOMAIN_VERIFICATION),
   ga4Id: clean(process.env.NEXT_PUBLIC_GA4_ID),
   googleAdsId: clean(process.env.NEXT_PUBLIC_GOOGLE_ADS_ID),
   googleAdsLeadLabel: clean(process.env.NEXT_PUBLIC_GOOGLE_ADS_LEAD_LABEL),

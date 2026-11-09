@@ -6,6 +6,7 @@ import { site } from "./site";
 
 export const ebookOffer: LeadOffer = {
   id: "ebook-mar-azul-da-advocacia",
+  contentName: "Ebook Mar Azul",
   consentText:
     "Concordo em receber o e-book e comunicações da Telecom ADV Academy por e-mail e WhatsApp, conforme a Política de Privacidade.",
   get webhookUrl() {
@@ -15,6 +16,7 @@ export const ebookOffer: LeadOffer = {
 
 export const listaEsperaOffer: LeadOffer = {
   id: "imersao-telecom-adv-lista-espera",
+  contentName: "Lista de espera Imersao",
   consentText:
     "Concordo em receber avisos sobre a Imersão Telecom ADV por e-mail e WhatsApp, conforme a Política de Privacidade.",
   get webhookUrl() {

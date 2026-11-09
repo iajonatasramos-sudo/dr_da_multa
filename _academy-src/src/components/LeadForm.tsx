@@ -127,8 +127,19 @@ export function LeadForm({ id = "formulario", variant = "ebook" }: { id?: string
     setStatus("sending");
     const eventId = uuid();
     try {
-      await sendLead(buildLeadPayload(values, eventId, v.offer), v.offer.webhookUrl);
-      trackLead(eventId, values.role);
+      const payload = buildLeadPayload(values, eventId, v.offer);
+      await sendLead(payload, v.offer.webhookUrl);
+      trackLead({
+        eventId,
+        externalId: payload.external_id,
+        contentName: payload.content_name,
+        email: payload.email,
+        phoneE164: payload.phone_e164,
+        firstName: payload.first_name,
+        lastName: payload.last_name,
+        state: payload.state,
+        profile: payload.perfil,
+      });
       if (v.depois === "inline") {
         sending.current = false;
         setStatus("done");

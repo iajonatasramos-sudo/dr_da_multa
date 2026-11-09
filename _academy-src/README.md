@@ -49,7 +49,8 @@ Todas são `NEXT_PUBLIC_*`: entram no HTML/JS **na hora do build**. Mudou alguma
 | `NEXT_PUBLIC_WHATSAPP_GROUP_URL` | sim | `https://chat.whatsapp.com/...` |
 | `NEXT_PUBLIC_EBOOK_URL` | não | Padrão: `/ebook/o-mar-azul-da-advocacia.pdf` (já incluso em `public/ebook/`) |
 | `NEXT_PUBLIC_SUPPORT_WHATSAPP` | não | Padrão: `5511973733366`. Usado no erro do formulário do e-book e no "Tenho outra dúvida" da imersão |
-| `NEXT_PUBLIC_META_PIXEL_ID` | não | Sem ele, o Pixel não carrega |
+| `NEXT_PUBLIC_META_PIXEL_ID` | sim (anúncios) | `29379423411743032` (conjunto "Telecom ADV Academy - Site Dr. Da Multa"). Sem ele, o Pixel não carrega |
+| `NEXT_PUBLIC_FB_DOMAIN_VERIFICATION` | não | Código da verificação de domínio do Meta. Vazio = a meta tag não aparece |
 | `NEXT_PUBLIC_GA4_ID` | não | `G-XXXXXXX` |
 | `NEXT_PUBLIC_GOOGLE_ADS_ID` | não | `AW-XXXXXXXXX` |
 | `NEXT_PUBLIC_GOOGLE_ADS_LEAD_LABEL` | não | Rótulo da conversão de lead no Google Ads |
@@ -61,7 +62,11 @@ Todas são `NEXT_PUBLIC_*`: entram no HTML/JS **na hora do build**. Mudou alguma
 
 ---
 
-## Deploy no Dokploy
+## Deploy no Dokploy (histórico)
+
+> **Desatualizado.** O academy não usa mais Dokploy: é publicado em `drdamultatelecom.com.br/academy/`
+> pelo Git Version Control do cPanel. As variáveis ficam no `_academy-src/.env` (fora do git) e entram
+> no build de `bash _academy-src/publicar.sh`. Veja o `CLAUDE.md` da pasta-mãe.
 
 1. **Create Application** → conecte o repositório do GitHub, branch `main`.
 2. **Build Type:** `Dockerfile` (caminho `./Dockerfile`).
@@ -82,7 +87,7 @@ O `nginx.conf` já entrega gzip, cache de 1 ano para `/_next/static/`, 30 dias p
 
 O formulário faz o `POST` direto do navegador. No nó **Webhook** do n8n:
 - *HTTP Method:* `POST`
-- *Options → Allowed Origins (CORS):* `https://telecomadv.academy`
+- *Options → Allowed Origins (CORS):* `https://drdamultatelecom.com.br`
 - *Respond:* imediatamente, com status 200. Qualquer status fora de 2xx é tratado como erro.
 
 O site espera até 10 s pela resposta e tenta mais uma vez (12 s) antes de mostrar o erro.
@@ -137,10 +142,106 @@ Detalhes:
 - `fbc` vem do cookie `_fbc`; se ele ainda não existir e houver `fbclid`, é montado no formato do Meta (`fb.1.<timestamp>.<fbclid>`).
 - `landing_url` e `referrer` são os da **primeira** página da sessão.
 
-### Deduplicação Pixel × API de Conversões
+### Campos planos (para a API de Conversões)
 
-O `event_id` do JSON é o mesmo `eventID` enviado no evento `Lead` do Pixel. No n8n, ao chamar a API de Conversões do Meta, use:
-`event_name: "Lead"`, `event_id: {{event_id}}`, `event_time` a partir de `timestamp`, `action_source: "website"`, `event_source_url: {{context.page_url}}`, e em `user_data`: `em`/`ph` (SHA-256 de `lead.email` e de `lead.whatsapp` sem o `+`), `fbp`, `fbc`, `client_user_agent`.
+Além do formato acima, o JSON traz no primeiro nível os campos que o fluxo da API de Conversões usa:
+
+| Campo | Exemplo |
+|---|---|
+| `event_id` | UUID, o mesmo `eventID` do `Lead` no Pixel |
+| `event_time` | `1792709520` (unix, segundos) |
+| `event_source_url` | URL da página do envio |
+| `content_name` | `Ebook Mar Azul` (lista de espera: `Lista de espera Imersao`) |
+| `external_id` | ID estável do visitante (salvo no `localStorage`; na 1ª vez, é o `event_id`) |
+| `email`, `phone_e164` | `maria@exemplo.com`, `+5511987654321` |
+| `first_name`, `last_name`, `state`, `perfil` | `Maria`, `Silva`, `SP`, `Advogado(a)` |
+| `fbp`, `fbc`, `user_agent` | cookies `_fbp`/`_fbc` e o navegador |
+| `cookie_consent` | `granted`, `denied` ou `""` (não respondeu ao banner) |
+| `utm_source` … `utm_term`, `fbclid`, `gclid` | origem do clique |
+
+Nenhum dado pessoal vai em URL: o envio é `POST` com JSON no corpo. A única query string é o primeiro nome
+em `/obrigado/?nome=Maria`, que já existia e é usado só para a saudação.
+
+---
+
+## Meta Pixel + API de Conversões
+
+**Conjunto de dados:** Telecom ADV Academy - Site Dr. Da Multa · **Pixel:** `29379423411743032` · BM MCB, conta MCB JR1.
+A campanha otimiza para `Lead`: é o evento mais importante.
+
+### Como o Lead chega duas vezes e conta uma
+
+1. O formulário gera um `event_id` (UUID) e faz `POST` para o n8n.
+2. Só quando o n8n responde 2xx, o navegador reinicia o Pixel com a correspondência avançada
+   (`fbq('init', ID, {em, ph, fn, ln, st, country:'br', external_id})`, o Pixel faz o hash) e dispara
+   `fbq('track','Lead',{content_name, lead_profile, lead_state},{eventID: event_id})`.
+3. O n8n manda o mesmo `Lead` pelo servidor, com o mesmo `event_id`. A Meta junta os dois.
+
+### Instalar o fluxo do n8n
+
+Arquivo: [`n8n/meta-capi-lead.json`](n8n/meta-capi-lead.json). No n8n: **Workflows → Import from File**.
+
+| Nó | O que faz |
+|---|---|
+| Webhook (teste direto) | Recebe o mesmo JSON do site em `/webhook/meta-capi-lead` (útil para testar com `curl`) |
+| Chamado pelo fluxo do lead | Entrada usada em produção: o fluxo atual do lead chama este |
+| Configuração | `GRAPH_VERSION` (`v26.0`, a atual em nov/2026), `PIXEL_ID`, `TEST_EVENT_CODE` |
+| Normalizar + SHA-256 | Normaliza e faz SHA-256 (hex minúsculo) de `em`, `ph`, `fn`, `ln`, `st`, `country`, `external_id`. **Não** faz hash de `fbp`, `fbc`, IP e user agent. IP = primeiro do `x-forwarded-for` |
+| Enviar para Meta (CAPI) | `POST https://graph.facebook.com/{GRAPH_VERSION}/29379423411743032/events`, token pela credencial |
+| Registrar erro da CAPI | Se a Meta der erro, registra no log da execução e segue. O lead não se perde |
+
+**Ligar ao fluxo atual do lead:** no fluxo que já recebe `NEXT_PUBLIC_LEAD_WEBHOOK_URL`, logo depois do Webhook,
+adicione um nó **Execute Workflow** → *Workflow:* "Meta CAPI - Lead (Telecom ADV Academy)", *Mode:* uma
+execução para todos os itens, e **desligue** *Wait for Sub-Workflow Completion*. Ele repassa o item do Webhook
+inteiro (`body` + `headers`), que é o que o fluxo da CAPI espera. O fluxo do lead continua respondendo 200 ao site
+como antes.
+
+Se a versão da Graph API mudar, troque só o `GRAPH_VERSION` no nó **Configuração**
+(versões em developers.facebook.com/docs/graph-api/changelog/versions).
+
+### Onde colar o token
+
+1. Gere o token: Gerenciador de Eventos → conjunto "Telecom ADV Academy" → **Configurações** →
+   **API de Conversões** → **Gerar token de acesso**.
+2. No n8n: **Credentials → Add credential → Query Auth**.
+   - *Name* da credencial: `Meta CAPI token`
+   - *Name* (do parâmetro): `access_token`
+   - *Value*: o token
+3. Abra o nó **Enviar para Meta (CAPI)** e selecione essa credencial.
+
+O token fica só no n8n. Não vai para o site, nem para o `.env`, nem para o Git.
+
+### Verificação de domínio (opcional, recomendado)
+
+1. BM MCB → **Configurações do negócio** → **Segurança da marca** → **Domínios** → **Adicionar**.
+   O domínio é **`drdamultatelecom.com.br`** (é onde o academy está publicado agora; `telecomadv.academy` não tem DNS).
+2. Escolha **Meta tag**. Ela vem assim: `<meta name="facebook-domain-verification" content="abc123..." />`.
+3. Copie só o valor de `content` para `NEXT_PUBLIC_FB_DOMAIN_VERIFICATION` no `_academy-src/.env`, rode o
+   `publicar.sh` e publique.
+4. Volte ao BM e clique em **Verificar**.
+
+Atenção: a tag sai nas páginas de `/academy/`. A Meta procura a tag na **página inicial do domínio**
+(`drdamultatelecom.com.br/`), que é o site estático da raiz, fora do Next. Nesse caso, cole a mesma meta tag
+no `<head>` do `index.html` da raiz (ou use a opção de arquivo HTML / registro DNS TXT no BM).
+
+### Roteiro de testes
+
+1. **Build local:** `npx next build`, depois `grep -c "tr?id=29379423411743032" out/index.html` (o `<noscript>`,
+   deve dar 1 ou mais) e `grep -rl "29379423411743032" out/_next/static/chunks/app/layout-*.js` (o script do Pixel,
+   que é montado no navegador e por isso não aparece como texto no HTML).
+2. **Meta Pixel Helper** (extensão do Chrome), no site publicado:
+   - `/academy/` → `PageView`
+   - Enviar o formulário → `Lead`, com *Event ID* preenchido e parâmetros `content_name: Ebook Mar Azul`,
+     `lead_profile`, `lead_state`; correspondência avançada detectada
+   - `/academy/obrigado/` → `PageView` + `ViewContent`
+   - Clique em "Entrar no grupo" → `JoinGroupClick`
+   - `/academy/imersao/` → `ViewContent`; botão de compra → `InitiateCheckout` (BRL, valor do ingresso/VIP)
+3. **Eventos de teste:** Gerenciador de Eventos → conjunto → aba **Eventos de teste** → copie o código
+   (`TEST12345`). Cole em `TEST_EVENT_CODE` no nó **Configuração** do n8n e envie um lead. O mesmo `Lead` precisa
+   aparecer duas vezes, **Navegador** e **Servidor**, marcado como **Desduplicado**. Depois do teste, **apague**
+   o `TEST_EVENT_CODE`.
+4. **Nenhum dado pessoal em URL:** no DevTools → Network, o envio do formulário é `POST` com JSON no corpo; as
+   requisições `facebook.com/tr` do `Lead` levam os dados com hash, não em texto.
 
 ---
 
@@ -149,17 +250,24 @@ O `event_id` do JSON é o mesmo `eventID` enviado no evento `Lead` do Pixel. No 
 | Onde | Meta Pixel | GA4 | Google Ads |
 |---|---|---|---|
 | Toda página | `PageView` | `page_view` (automático) | |
-| Envio do formulário (sucesso) | `Lead` com `eventID` | `generate_lead` | `conversion` (`send_to: ADS_ID/LABEL`, `transaction_id: event_id`) |
+| Envio do formulário (sucesso) | `Lead` com `eventID` + correspondência avançada | `generate_lead` | `conversion` (`send_to: ADS_ID/LABEL`, `transaction_id: event_id`) |
 | `/obrigado/` | `ViewContent` | | |
 | Clique no grupo | `JoinGroupClick` (custom) | `join_group_click` | |
 
 Os scripts carregam depois da hidratação (`next/script` `afterInteractive`), sem bloquear a renderização.
+O `PageView` da primeira página sai do snippet de init; nas navegações internas, `Tracking.tsx` dispara um a cada
+troca de rota (sem repetir o primeiro). Há `<noscript>` de fallback no `layout.tsx`.
+
+Cookie `_fbc`: se a URL chega com `fbclid` e o cookie não existe, o site cria `_fbc` = `fb.1.<timestamp_ms>.<fbclid>`
+(90 dias, `path=/`, domínio do site), a não ser que a pessoa tenha recusado no banner.
 
 ### Banner de cookies (escolha documentada)
 
 Modelo **opt-out**: o Pixel e o gtag carregam normalmente na primeira visita, e o banner informa e oferece **Aceitar** ou **Recusar**.
 - **Recusar** grava a escolha no `localStorage`, chama `fbq('consent','revoke')` e atualiza o Consent Mode do Google para `denied`. Nas visitas seguintes os scripts já sobem revogados.
 - Por que não bloquear até aceitar: no tráfego de anúncio, a maioria das pessoas ignora o banner. Bloquear o Pixel até o clique derruba a mensuração de `PageView`/`Lead` e piora a otimização das campanhas, que foi o requisito do briefing.
+- A API de Conversões manda o `Lead` pelo servidor mesmo quando a pessoa recusou no banner. O payload traz
+  `cookie_consent` para o n8n poder filtrar (`denied` → não enviar) se essa for a decisão.
 - Risco: a LGPD não exige consentimento prévio para todo cookie de medição, mas a ANPD recomenda opt-in para cookies não essenciais de publicidade. Se quiser o modelo opt-in, troque o valor padrão em `src/components/Tracking.tsx` (`deniedExpr` passa a tratar "sem escolha" como recusado).
 
 ---

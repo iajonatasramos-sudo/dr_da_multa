@@ -14,14 +14,18 @@ declare global {
 }
 
 /** O Pixel sobe depois da hidratação; eventos disparados antes disso esperam até 5 s. */
-function fbq(...args: unknown[]) {
+function whenFbq(cb: (f: Fn) => void) {
   if (!site.metaPixelId || typeof window === "undefined") return;
   let tries = 0;
   const run = () => {
-    if (window.fbq) return window.fbq(...args);
+    if (window.fbq) return cb(window.fbq);
     if (++tries < 25) setTimeout(run, 200);
   };
   run();
+}
+
+function fbq(...args: unknown[]) {
+  whenFbq((f) => f(...args));
 }
 
 /** Antes do gtag.js carregar, empilhar no dataLayer tem o mesmo efeito. */
@@ -40,9 +44,48 @@ export function trackPageView() {
   fbq("track", "PageView");
 }
 
-export function trackLead(eventId: string, role: string) {
-  fbq("track", "Lead", { content_name: "ebook-mar-azul", lead_role: role }, { eventID: eventId });
-  if (site.ga4Id) gtag("event", "generate_lead", { send_to: site.ga4Id, lead_source: "ebook-mar-azul", lead_role: role, event_id: eventId });
+export type LeadMatch = {
+  eventId: string;
+  externalId: string;
+  contentName: string;
+  email: string;
+  phoneE164: string;
+  firstName: string;
+  lastName: string;
+  state: string;
+  profile: string;
+};
+
+/**
+ * Lead, chamado só depois que o webhook do n8n respondeu com sucesso.
+ * Antes, reinicia o Pixel com a correspondência avançada (o Pixel faz o hash).
+ * O eventID é o mesmo event_id enviado ao n8n, para deduplicar com a API de Conversões.
+ */
+export function trackLead(m: LeadMatch) {
+  const uf = m.state.trim().toLowerCase();
+  const userData: Record<string, string> = {
+    em: m.email.trim().toLowerCase().replace(/\s+/g, ""),
+    ph: m.phoneE164.replace(/\D/g, ""),
+    fn: m.firstName.trim().toLowerCase(),
+    country: "br",
+    external_id: m.externalId,
+  };
+  if (m.lastName) userData.ln = m.lastName.trim().toLowerCase();
+  if (/^[a-z]{2}$/.test(uf)) userData.st = uf;
+
+  // init + track no mesmo disparo, para manter a ordem mesmo se o Pixel ainda estiver carregando
+  whenFbq((f) => {
+    f("init", site.metaPixelId, userData);
+    f(
+      "track",
+      "Lead",
+      { content_name: m.contentName, lead_profile: m.profile, lead_state: uf ? uf.toUpperCase() : "" },
+      { eventID: m.eventId },
+    );
+  });
+  const role = m.profile;
+  const eventId = m.eventId;
+  if (site.ga4Id) gtag("event", "generate_lead", { send_to: site.ga4Id, lead_source: m.contentName, lead_role: role, event_id: eventId });
   if (site.googleAdsId && site.googleAdsLeadLabel) {
     gtag("event", "conversion", { send_to: `${site.googleAdsId}/${site.googleAdsLeadLabel}`, transaction_id: eventId });
   }

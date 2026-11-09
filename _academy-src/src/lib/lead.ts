@@ -1,6 +1,7 @@
 // Monta o payload do lead e envia ao webhook do n8n com timeout e uma nova tentativa.
 
-import { getAttribution, getMetaCookies } from "./attribution";
+import { getAttribution, getExternalId, getMetaCookies } from "./attribution";
+import { readConsent } from "./consent";
 import { toE164 } from "./phone";
 
 export type LeadInput = {
@@ -20,6 +21,8 @@ export type LeadPayload = ReturnType<typeof buildLeadPayload>;
  */
 export type LeadOffer = {
   id: string;
+  /** content_name do evento Lead (Pixel e API de Conversões). */
+  contentName: string;
   consentText: string;
   webhookUrl: string;
 };
@@ -27,9 +30,34 @@ export type LeadOffer = {
 export function buildLeadPayload(input: LeadInput, eventId: string, offer: LeadOffer) {
   const attribution = getAttribution();
   const { fbp, fbc } = getMetaCookies(attribution.fbclid);
+  const externalId = getExternalId(eventId);
   return {
+    // Campos planos para a API de Conversões (fluxo n8n "Meta CAPI - Lead")
     event_id: eventId,
     event_name: "Lead",
+    event_time: Math.floor(Date.now() / 1000),
+    event_source_url: window.location.href,
+    content_name: offer.contentName,
+    external_id: externalId,
+    email: input.email.trim().toLowerCase(),
+    phone_e164: toE164(input.whatsapp),
+    first_name: firstName(input.name),
+    last_name: lastName(input.name),
+    state: input.state || "",
+    perfil: input.role,
+    fbp,
+    fbc,
+    user_agent: navigator.userAgent,
+    // Escolha no banner de cookies: "granted", "denied" ou "" (não respondeu)
+    cookie_consent: readConsent() ?? "",
+    utm_source: attribution.utm_source,
+    utm_medium: attribution.utm_medium,
+    utm_campaign: attribution.utm_campaign,
+    utm_content: attribution.utm_content,
+    utm_term: attribution.utm_term,
+    fbclid: attribution.fbclid,
+    gclid: attribution.gclid,
+    // Formato anterior, mantido para não quebrar o fluxo do n8n que já existe
     timestamp: new Date().toISOString(),
     lead: {
       name: input.name.trim(),
@@ -64,6 +92,11 @@ export function buildLeadPayload(input: LeadInput, eventId: string, offer: LeadO
 
 export function firstName(name: string) {
   return name.trim().split(/\s+/)[0] ?? "";
+}
+
+export function lastName(name: string) {
+  const parts = name.trim().split(/\s+/);
+  return parts.length > 1 ? parts[parts.length - 1] : "";
 }
 
 async function postOnce(payload: LeadPayload, url: string, timeoutMs: number) {

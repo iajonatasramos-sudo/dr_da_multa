@@ -39,6 +39,8 @@ export const metadata: Metadata = {
     images: [{ url: `${BASE_PATH}/img/og.png`, width: 1200, height: 630, alt: "Capa do e-book O Mar Azul da Advocacia" }],
   },
   twitter: { card: "summary_large_image", title, description, images: [`${BASE_PATH}/img/og.png`] },
+  // Verificação de domínio do Meta: só aparece se a variável existir
+  ...(site.fbDomainVerification ? { other: { "facebook-domain-verification": site.fbDomainVerification } } : {}),
 };
 
 export const viewport: Viewport = {
@@ -50,6 +52,18 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="pt-BR" className={`${display.variable} ${sans.variable}`}>
       <body>
+        {site.metaPixelId && (
+          <noscript>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              height="1"
+              width="1"
+              style={{ display: "none" }}
+              alt=""
+              src={`https://www.facebook.com/tr?id=${site.metaPixelId}&ev=PageView&noscript=1`}
+            />
+          </noscript>
+        )}
         {children}
         <Suspense fallback={null}>
           <Tracking />

@@ -3,8 +3,8 @@
 import Script from "next/script";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef } from "react";
-import { captureAttribution } from "@/lib/attribution";
-import { CONSENT_KEY } from "@/lib/consent";
+import { captureAttribution, ensureFbcCookie } from "@/lib/attribution";
+import { CONSENT_KEY, readConsent } from "@/lib/consent";
 import { site } from "@/lib/site";
 import { trackPageView } from "@/lib/track";
 
@@ -23,6 +23,7 @@ export function Tracking() {
 
   useEffect(() => {
     captureAttribution();
+    ensureFbcCookie(readConsent() === "denied");
   }, []);
 
   useEffect(() => {

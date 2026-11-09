@@ -56,12 +56,45 @@ function getCookie(name: string) {
   return match ? decodeURIComponent(match[1]) : "";
 }
 
+/** Domínio para o cookie: o host sem "www." (em localhost, sem atributo domain). */
+function cookieDomain() {
+  const host = window.location.hostname;
+  if (host === "localhost" || /^[\d.]+$/.test(host) || !host.includes(".")) return "";
+  return `; domain=.${host.replace(/^www\./, "")}`;
+}
+
+/**
+ * Se a URL trouxe fbclid e ainda não existe _fbc, grava o cookie no formato do Meta
+ * (fb.1.<timestamp_ms>.<fbclid>, 90 dias). Não grava se a pessoa recusou no banner.
+ */
+export function ensureFbcCookie(denied: boolean) {
+  if (denied || getCookie("_fbc")) return;
+  const fbclid = new URLSearchParams(window.location.search).get("fbclid");
+  if (!fbclid) return;
+  const value = `fb.1.${Date.now()}.${fbclid}`;
+  document.cookie = `_fbc=${encodeURIComponent(value)}; max-age=${90 * 24 * 3600}; path=/${cookieDomain()}; SameSite=Lax`;
+}
+
 /** _fbc do cookie; se ainda não existir mas houver fbclid, monta no formato do Meta. */
 export function getMetaCookies(fbclid: string) {
   const fbp = getCookie("_fbp");
   let fbc = getCookie("_fbc");
   if (!fbc && fbclid) fbc = `fb.1.${Date.now()}.${fbclid}`;
   return { fbp, fbc };
+}
+
+const EXTERNAL_ID_KEY = "tadv_external_id";
+
+/** ID estável do visitante (localStorage), usado como external_id no Pixel e na API de Conversões. */
+export function getExternalId(fallback: string) {
+  try {
+    const saved = localStorage.getItem(EXTERNAL_ID_KEY);
+    if (saved) return saved;
+    localStorage.setItem(EXTERNAL_ID_KEY, fallback);
+  } catch {
+    /* sem storage: usa o event_id deste envio */
+  }
+  return fallback;
 }
 
 export function uuid() {
