@@ -2,528 +2,808 @@
 <html lang="pt-BR">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dr. Da Multa Telecom | Links</title>
-    <meta name="description"
-        content="Vinte anos dentro das operadoras. Fale com um especialista, baixe o e-book para advogados ou entre na lista da Imersão Telecom ADV.">
-    <link rel="canonical" href="https://drdamultatelecom.com.br/links/">
-    <meta name="robots" content="noindex, follow">
-
-    <meta property="og:type" content="website">
-    <meta property="og:title" content="Dr. Da Multa Telecom">
-    <meta property="og:description" content="Vinte anos dentro das operadoras. Hoje, do seu lado.">
-    <meta property="og:url" content="https://drdamultatelecom.com.br/links/">
-    <meta property="og:image"
-        content="https://drdamultatelecom.com.br/assets/img/arquivo/telephone-exchange-montreal-qe3-33.jpg">
-
-    <link rel="icon" href="/assets/img/cropped-Logo-e-Simbolos-32x32.png" sizes="32x32">
-    <link rel="apple-touch-icon" href="/assets/img/cropped-Logo-e-Simbolos-180x180.png">
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Playfair+Display:wght@600;700&display=swap"
-        rel="stylesheet">
-
-    <style>
-        /* ============================================================
-           Página de links, no padrão de cartões com fotografia que o
-           cliente escolheu como referência, na paleta e na tipografia
-           da marca. As fotos são de acervo aberto, do mundo da
-           telefonia, creditadas no rodapé.
-           ============================================================ */
-
-        :root {
-            --ground: #020F27;
-            --ink: #FFFFFF;
-            --ink-dim: #AFC0D8;
-            --accent: #B8965A;
-            --accent-light: #D4B87A;
-            --whatsapp: #1FA855;
-            --raio: 16px;
-            --margem: clamp(1rem, 4.5vw, 1.5rem);
-        }
-
-        *,
-        *::before,
-        *::after {
-            box-sizing: border-box;
-        }
-
-        html {
-            -webkit-text-size-adjust: 100%;
-        }
-
-        body {
-            margin: 0;
-            background: var(--ground);
-            color: var(--ink);
-            font-family: 'Lato', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-            font-size: 1rem;
-            line-height: 1.5;
-            -webkit-font-smoothing: antialiased;
-        }
-
-        img {
-            display: block;
-            max-width: 100%;
-        }
-
-        :focus-visible {
-            outline: 3px solid var(--accent-light);
-            outline-offset: 3px;
-        }
-
-        .pagina {
-            max-width: 30rem;
-            margin: 0 auto;
-            padding: 0 var(--margem) calc(2.5rem + env(safe-area-inset-bottom));
-        }
-
-        /* ---------- Topo ---------- */
-
-        .topo {
-            position: relative;
-            margin-top: var(--margem);
-            padding: clamp(2.5rem, 11vw, 4rem) clamp(1.25rem, 6vw, 2rem) clamp(2rem, 8vw, 2.75rem);
-            border-radius: var(--raio);
-            overflow: hidden;
-            isolation: isolate;
-            text-align: center;
-        }
-
-        .topo .fundo,
-        .cartao .fundo {
-            position: absolute;
-            inset: 0;
-            z-index: -2;
-        }
-
-        .topo .fundo img,
-        .cartao .fundo img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        /* Véu chapado: a fotografia aparece, o texto continua legível. */
-        .topo::after,
-        .cartao::after {
-            content: "";
-            position: absolute;
-            inset: 0;
-            z-index: -1;
-            background: rgba(2, 15, 39, .55);
-            transition: background-color .4s ease;
-        }
-
-        .topo::after {
-            background: rgba(2, 15, 39, .7);
-        }
-
-        .topo .logo {
-            width: clamp(92px, 26vw, 116px);
-            height: auto;
-            margin: 0 auto;
-        }
-
-        .frase {
-            margin: clamp(1.1rem, 4vw, 1.5rem) 0 0;
-            font-family: 'Playfair Display', Georgia, serif;
-            font-weight: 700;
-            font-size: clamp(2rem, 8.6vw, 2.6rem);
-            line-height: 1.02;
-            letter-spacing: -0.025em;
-        }
-
-        .apoio {
-            margin: .9rem auto 0;
-            max-width: 30ch;
-            font-size: 1.0625rem;
-            line-height: 1.45;
-        }
-
-        /* ---------- Cartões ---------- */
-
-        .destinos {
-            margin: clamp(1rem, 3.5vw, 1.25rem) 0 0;
-            padding: 0;
-            list-style: none;
-        }
-
-        .cartao {
-            position: relative;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            min-height: 15.5rem;
-            padding: clamp(2rem, 7vw, 2.75rem) clamp(1.25rem, 6vw, 2rem);
-            border-radius: var(--raio);
-            overflow: hidden;
-            isolation: isolate;
-            text-align: center;
-            text-decoration: none;
-            color: var(--ink);
-            transition: transform .18s ease;
-        }
-
-        .destinos li+li {
-            margin-top: clamp(.85rem, 3vw, 1.1rem);
-        }
-
-        .cartao .fundo img {
-            transform: scale(1.02);
-            transition: transform .8s cubic-bezier(.2, .7, .3, 1);
-        }
-
-        .cartao:hover .fundo img,
-        .cartao:focus-visible .fundo img {
-            transform: scale(1.07);
-        }
-
-        .cartao:hover::after,
-        .cartao:focus-visible::after {
-            background: rgba(2, 15, 39, .4);
-        }
-
-        .cartao:active {
-            transform: translateY(1px);
-        }
-
-        .cartao .titulo {
-            display: block;
-            margin: 0 auto;
-            max-width: 15ch;
-            font-family: 'Playfair Display', Georgia, serif;
-            font-weight: 600;
-            font-size: clamp(1.45rem, 6.2vw, 1.8rem);
-            line-height: 1.12;
-            letter-spacing: -0.02em;
-        }
-
-        .cartao .texto {
-            display: block;
-            margin: .85rem auto 0;
-            max-width: 34ch;
-            font-size: 1rem;
-            line-height: 1.5;
-        }
-
-        /* O cartão do e-book mostra a capa como objeto, não como fundo:
-           a tipografia da capa brigava com a do cartão quando recortada. */
-        .cartao--ebook {
-            background: #071C40;
-        }
-
-        .cartao--ebook::after {
-            display: none;
-        }
-
-        .cartao .capa {
-            width: auto;
-            height: clamp(7rem, 24vw, 9rem);
-            margin: 0 auto 1.1rem;
-            border-radius: 4px;
-        }
-
-        /* A ação de cada cartão, em forma de botão. */
-        .cartao .acao {
-            display: inline-flex;
-            align-items: center;
-            gap: .5rem;
-            margin: 1.15rem auto 0;
-            padding: .7rem 1.3rem;
-            border-radius: 999px;
-            background: var(--accent);
-            color: var(--ground);
-            font-weight: 700;
-            font-size: .98rem;
-            line-height: 1;
-            transition: background-color .3s ease;
-        }
-
-        .cartao .acao svg {
-            width: 1.15rem;
-            height: 1.15rem;
-        }
-
-        .cartao--whatsapp .acao {
-            background: var(--whatsapp);
-            color: var(--ink);
-        }
-
-        .cartao:hover .acao {
-            background: var(--accent-light);
-        }
-
-        .cartao--whatsapp:hover .acao {
-            background: #25D366;
-        }
-
-        /* ---------- Rodapé ---------- */
-
-        .rodape {
-            position: relative;
-            margin-top: clamp(1.75rem, 6vw, 2.5rem);
-            padding: clamp(2rem, 8vw, 3rem) clamp(1.25rem, 6vw, 2rem);
-            border-radius: var(--raio);
-            overflow: hidden;
-            isolation: isolate;
-            text-align: center;
-        }
-
-        .rodape .fundo {
-            position: absolute;
-            inset: 0;
-            z-index: -2;
-        }
-
-        .rodape .fundo img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .rodape::after {
-            content: "";
-            position: absolute;
-            inset: 0;
-            z-index: -1;
-            background: rgba(2, 15, 39, .85);
-        }
-
-        .assinatura {
-            margin: 0;
-            font-family: 'Playfair Display', Georgia, serif;
-            font-weight: 600;
-            font-size: 1.3rem;
-            line-height: 1.2;
-            letter-spacing: -0.015em;
-        }
-
-        .endereco {
-            margin: .7rem 0 0;
-            font-size: 1rem;
-            line-height: 1.55;
-        }
-
-        .endereco a {
-            color: var(--accent-light);
-        }
-
-        .credits {
-            margin: 1.75rem 0 0;
-            color: var(--ink-dim);
-            font-size: 1rem;
-            line-height: 1.5;
-            text-align: left;
-        }
-
-        .credits a {
-            color: var(--ink-dim);
-        }
-
-        /* ---------- Telas largas: a página ocupa a tela ---------- */
-
-        @media (min-width: 900px) {
-            .pagina {
-                max-width: 76rem;
-                padding: 0 clamp(1.5rem, 4vw, 3rem) 3rem;
-            }
-
-            /* O topo sai da coluna e ocupa a largura inteira da tela. */
-            .topo {
-                min-height: 72vh;
-                display: flex;
-                flex-direction: column;
-                justify-content: center;
-                margin-left: calc(50% - 50vw);
-                margin-right: calc(50% - 50vw);
-                margin-top: 0;
-                padding: 4rem clamp(2rem, 6vw, 5rem);
-                border-radius: 0;
-            }
-
-            .topo .logo {
-                width: 132px;
-            }
-
-            .frase {
-                font-size: clamp(3.4rem, 6.4vw, 5.2rem);
-                letter-spacing: -0.035em;
-            }
-
-            .apoio {
-                max-width: 44ch;
-                font-size: 1.25rem;
-            }
-
-            .destinos {
-                display: grid;
-                grid-template-columns: repeat(3, 1fr);
-                gap: 1.1rem;
-            }
-
-            .destinos li+li {
-                margin-top: 0;
-            }
-
-            .cartao {
-                min-height: 22rem;
-            }
-
-            .cartao .titulo {
-                font-size: 2rem;
-            }
-
-            .credits {
-                max-width: 66ch;
-                margin-left: auto;
-                margin-right: auto;
-            }
-        }
-
-        /* ---------- Movimento ---------- */
-
-        [data-anim] .sobe {
-            opacity: 0;
-            transform: translateY(22px);
-        }
-
-        [data-anim] .sobe.dentro {
-            opacity: 1;
-            transform: none;
-            transition: opacity .6s cubic-bezier(.2, .7, .3, 1), transform .6s cubic-bezier(.2, .7, .3, 1);
-        }
-
-        @media (prefers-reduced-motion: reduce) {
-
-            [data-anim] .sobe,
-            [data-anim] .sobe.dentro,
-            .cartao,
-            .cartao .fundo img,
-            .cartao .mais,
-            .cartao:active {
-                opacity: 1;
-                transform: none;
-                transition: none;
-            }
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="description"
+    content="Dr. Da Multa Telecom — advocacia especializada em Direito do Consumidor nas telecomunicações. Fale com a equipe, baixe o e-book e conheça o guia Telefonia Sem Abuso.">
+  <title>Dr. Da Multa Telecom | Links</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@600;700&display=swap"
+    rel="stylesheet">
+  <style>
+    /* ── Design Tokens ────────────────────────────────── */
+    :root {
+      --navy: #000000;
+      --navy-mid: #0A0A0A;
+      --navy-light: #141414;
+      --offwhite: #F5F0EB;
+      --cream: #E8E0D8;
+      --gold: #C9A96E;
+      --gold-hover: #D9BE8A;
+      --gold-dim: rgba(201, 169, 110, .15);
+      /* Botões na cor do terno da foto do topo */
+      --btn-navy: #1A1F33;
+      --btn-navy-hover: #262D48;
+      --btn-beige: #E8DCC4;
+      --text-main: #FFFFFF;
+      --text-muted: rgba(255, 255, 255, .7);
+      --radius: 16px;
+      --radius-sm: 12px;
+      --transition: .4s cubic-bezier(.25, .8, .25, 1);
+      --shadow: 0 4px 12px rgba(255, 218, 170, 0);
+      /* Transparent by default, only shows on focus/hover */
+      --font-body: 'Inter', system-ui, sans-serif;
+      --font-display: 'Playfair Display', Georgia, serif;
+    }
+
+    /* ── Reset ────────────────────────────────────────── */
+    *,
+    *::before,
+    *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    /* Override Elementor's default padding on columns/widgets for full width */
+    .elementor-widget-wrap,
+    .elementor-column-gap-default>.elementor-column>.elementor-element-populated,
+    .elementor-section.elementor-section-boxed>.elementor-container {
+      padding: 0 !important;
+      margin: 0 !important;
+      max-width: 100% !important;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+      font-family: var(--font-body);
+      background-color: var(--navy-light);
+      background-image: linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.85)), url('/assets/img/Fundo-Cimento.png');
+      background-size: cover;
+      background-position: center top;
+      background-attachment: fixed;
+      color: var(--text-main);
+      min-height: 100dvh;
+      display: flex;
+      justify-content: center;
+      overflow-x: hidden;
+    }
+
+    /* ── Page Container ───────────────────────────────── */
+    .page {
+      width: 100%;
+      max-width: 480px;
+      padding: 0 0 64px;
+      /* Removed lateral padding so banner can touch edges */
+      position: relative;
+      margin: 0 auto;
+      z-index: 10;
+    }
+
+    /* Decorative ambient glow */
+    .page::before {
+      content: '';
+      position: fixed;
+      width: 300px;
+      height: 300px;
+      background: radial-gradient(circle, rgba(201, 169, 110, .08) 0%, transparent 70%);
+      top: -80px;
+      left: 50%;
+      transform: translateX(-50%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* ── Header / Hero Banner ─────────────────────────── */
+    .hero-banner {
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100%;
+      max-width: 540px;
+      /* Altura proporcional à largura: a foto encaixa pela largura e os braços
+         ficam sempre a 80% da largura a partir do topo (ver .header) */
+      height: calc(min(100vw, 540px) * 1.2);
+      background-image: url('/assets/img/links-hero.webp');
+      background-size: cover;
+      background-position: center top;
+      background-repeat: no-repeat;
+      z-index: 0;
+      mask-image: linear-gradient(to bottom, black 55%, transparent 100%);
+      -webkit-mask-image: linear-gradient(to bottom, black 55%, transparent 100%);
+    }
+
+    /* Gradient overlay to darken image behind text */
+    .hero-banner::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom,
+          rgba(0, 0, 0, 0.1) 0%,
+          rgba(0, 0, 0, 0.7) 100%);
+    }
+
+    .header {
+      text-align: center;
+      /* Centro da logo (130px) na altura dos braços cruzados: 80,1% da largura da foto */
+      padding: calc(min(100vw, 540px) * 0.801 - 65px) 0 32px;
+      /* Pushes content down over the gradient */
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-logo {
+      width: 130px;
+      max-width: 80%;
+      height: auto;
+      margin: 0 auto 16px;
+      display: block;
+      filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.5));
+    }
+
+    .header p {
+      font-size: 0.95rem;
+      color: var(--offwhite);
+      font-weight: 400;
+      line-height: 1.4;
+      letter-spacing: .01em;
+      max-width: 320px;
+      margin: 0 auto;
+      padding: 0 16px;
+      /* Added side padding back to text */
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
+    }
+
+    /* ── Cards Container ──────────────────────────────── */
+    .cards {
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+      padding: 0 16px;
+      /* Added side padding back to cards */
+      position: relative;
+      z-index: 1;
+    }
+
+    /* ── Card ─────────────────────────────────────────── */
+    .card {
+      border-radius: var(--radius);
+      overflow: hidden;
+      cursor: pointer;
+      position: relative;
+      box-shadow: var(--shadow);
+      transition: transform var(--transition), box-shadow var(--transition);
+      will-change: transform;
+    }
+
+    .card.in-view {
+      transform: translateY(-2px) scale(1.10);
+      box-shadow: 0 6px 18px rgba(255, 218, 170, 0.22);
+      /* 6px down, 18px blur, 3000K light */
+      z-index: 10;
+    }
+
+    .card:active {
+      transform: scale(.98);
+    }
+
+    /* Background image wrapper */
+    .card-bg {
+      position: absolute;
+      inset: 0;
+      background-size: cover;
+      background-position: center;
+      transition: transform .6s ease;
+    }
+
+    .card.active .card-bg {
+      transform: scale(1.05);
+    }
+
+    /* Overlay gradient */
+    .card-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg,
+          rgba(0, 0, 0, .38) 0%,
+          rgba(0, 0, 0, .57) 60%,
+          rgba(0, 0, 0, .66) 100%);
+      transition: background var(--transition);
+    }
+
+    .card.active .card-overlay {
+      background: linear-gradient(180deg,
+          rgba(0, 0, 0, .49) 0%,
+          rgba(0, 0, 0, .64) 40%,
+          rgba(0, 0, 0, .68) 100%);
+    }
+
+    /* Foto com texto grande no fundo (cartão do workshop): véu mais escuro para o título ler bem */
+    .card.card-escura .card-overlay {
+      background: linear-gradient(180deg,
+          rgba(0, 0, 0, .72) 0%,
+          rgba(0, 0, 0, .74) 60%,
+          rgba(0, 0, 0, .78) 100%);
+    }
+    .card.card-escura.active .card-overlay {
+      background: linear-gradient(180deg,
+          rgba(0, 0, 0, .80) 0%,
+          rgba(0, 0, 0, .78) 40%,
+          rgba(0, 0, 0, .80) 100%);
+    }
+
+    /* Card content */
+    .card-content {
+      position: relative;
+      z-index: 2;
+      padding: 28px 24px;
+    }
+
+    .card-title {
+      font-family: var(--font-display);
+      font-size: 1.15rem;
+      font-weight: 600;
+      color: var(--offwhite);
+      text-align: center;
+      line-height: 1.4;
+      transition: color var(--transition);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .card-title .icon-expand {
+      width: 20px;
+      height: 20px;
+      flex-shrink: 0;
+      border: 1.5px solid var(--gold);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform var(--transition), background var(--transition);
+    }
+
+    .card-title .icon-expand::after {
+      content: '+';
+      font-family: var(--font-body);
+      font-size: .8rem;
+      font-weight: 600;
+      color: var(--gold);
+      line-height: 1;
+      transition: transform var(--transition);
+    }
+
+    .card.active .card-title .icon-expand {
+      background: var(--btn-navy);
+      border-color: var(--btn-navy);
+      transform: rotate(45deg);
+    }
+
+    .card.active .card-title .icon-expand::after {
+      color: var(--btn-beige);
+    }
+
+    /* Preview text (visible when collapsed) */
+    .card-preview {
+      font-size: .82rem;
+      line-height: 1.6;
+      color: var(--text-muted);
+      text-align: center;
+      margin-top: 12px;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      opacity: .75;
+      transition: opacity var(--transition), max-height var(--transition), margin var(--transition);
+      max-height: 80px;
+    }
+
+    .card.active .card-preview {
+      opacity: 0;
+      max-height: 0;
+      margin-top: 0;
+      overflow: hidden;
+    }
+
+    /* Expandable area */
+    .card-body {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height .5s cubic-bezier(.25, .8, .25, 1),
+        opacity .4s ease,
+        padding .4s ease;
+      opacity: 0;
+      padding: 0 0;
+    }
+
+    .card.active .card-body {
+      max-height: 400px;
+      opacity: 1;
+      padding: 8px 0 4px;
+      /* Reduced top padding from 16px to 8px */
+    }
+
+    .card-divider {
+      width: 40px;
+      height: 1px;
+      background: var(--gold-dim);
+      margin: 0 auto 8px;
+      /* Reduced bottom margin from 16px to 8px */
+      border: none;
+    }
+
+    .card-text {
+      font-size: .88rem;
+      line-height: 1.7;
+      color: var(--text-muted);
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    /* Card Guias e Ebooks: lista de botões empilhados */
+    .ebook-botoes {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .card--ebooks.active .card-body {
+      max-height: 640px;
+    }
+
+    .card-btn {
+      display: block;
+      width: 100%;
+      padding: 14px 24px;
+      background: var(--btn-navy);
+      color: var(--btn-beige);
+      font-family: var(--font-body);
+      font-size: .88rem;
+      font-weight: 600;
+      letter-spacing: .03em;
+      text-transform: uppercase;
+      border: none;
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      text-decoration: none;
+      text-align: center;
+      transition: transform .2s ease, box-shadow .2s ease, filter .2s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card-btn::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(255, 255, 255, .15), transparent);
+      opacity: 0;
+      transition: opacity .2s ease;
+    }
+
+    .card-btn:hover::before {
+      opacity: 1;
+    }
+
+    .card-btn:hover {
+      transform: translateY(-1px);
+      background: var(--btn-navy-hover);
+      box-shadow: 0 4px 20px rgba(26, 31, 51, .7);
+    }
+
+    .card-btn:active {
+      transform: scale(.97);
+    }
+
+    /* ── Footer ────────────────────────────────────────── */
+    .footer {
+      text-align: center;
+      padding: 40px 0 0;
+      position: relative;
+      z-index: 1;
+    }
+
+    .footer-line {
+      width: 60px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(201, 169, 110, .3), transparent);
+      margin: 0 auto 16px;
+    }
+
+    .footer p {
+      font-size: .72rem;
+      color: rgba(255, 255, 255, .3);
+      letter-spacing: .05em;
+      text-transform: uppercase;
+    }
+
+    .footer .footer-marca {
+      font-family: var(--font-display);
+      font-size: 1rem;
+      color: var(--btn-beige);
+      letter-spacing: .02em;
+      text-transform: none;
+      margin-bottom: 6px;
+    }
+
+    .footer .footer-sub,
+    .footer .footer-oab {
+      font-size: .74rem;
+      color: rgba(255, 255, 255, .5);
+      letter-spacing: 0;
+      text-transform: none;
+      line-height: 1.5;
+      margin-bottom: 4px;
+    }
+
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin: 16px 0;
+    }
+
+    .footer-links a {
+      font-size: .78rem;
+      color: var(--btn-beige);
+      text-decoration: none;
+      opacity: .8;
+    }
+
+    .footer-links a:hover {
+      opacity: 1;
+      text-decoration: underline;
+    }
+
+    /* ── Responsive ────────────────────────────────────── */
+    @media (min-width: 481px) {
+      .page {
+        padding: 0 24px 80px;
+      }
+
+      .card-content {
+        padding: 32px 28px;
+      }
+
+      .card-title {
+        font-size: 1.25rem;
+      }
+    }
+
+    @media (min-width: 768px) {
+      .page {
+        max-width: 540px;
+      }
+
+      .hero-banner {
+        /* Laterais esmaecem para a foto não virar um retângulo na tela larga */
+        mask-image: linear-gradient(to bottom, black 55%, transparent 100%),
+          linear-gradient(to right, transparent 0%, black 18%, black 82%, transparent 100%);
+        -webkit-mask-image: linear-gradient(to bottom, black 55%, transparent 100%),
+          linear-gradient(to right, transparent 0%, black 18%, black 82%, transparent 100%);
+        mask-composite: intersect;
+        -webkit-mask-composite: source-in;
+      }
+
+      .header {
+        /* Logo de 150px centrada nos braços */
+        padding: calc(540px * 0.801 - 75px) 0 40px;
+        /* Adjusted for desktop too */
+      }
+
+      .hero-logo {
+        width: 150px;
+      }
+    }
+
+    /* ── Animations on load ────────────────────────────── */
+    .card {
+      animation: card-appear .6s ease backwards;
+    }
+
+    .card:nth-child(1) {
+      animation-delay: .1s;
+    }
+
+    .card:nth-child(2) {
+      animation-delay: .18s;
+    }
+
+    .card:nth-child(3) {
+      animation-delay: .26s;
+    }
+
+    .card:nth-child(4) {
+      animation-delay: .34s;
+    }
+
+    .card:nth-child(5) {
+      animation-delay: .42s;
+    }
+
+    .card:nth-child(6) {
+      animation-delay: .50s;
+    }
+
+    .card:nth-child(7) {
+      animation-delay: .58s;
+    }
+
+    .card:nth-child(8) {
+      animation-delay: .66s;
+    }
+
+    .card:nth-child(9) {
+      animation-delay: .74s;
+    }
+
+    @keyframes card-appear {
+      from {
+        opacity: 0;
+        transform: translateY(24px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .header {
+      animation: fade-down .6s ease backwards;
+    }
+
+    @keyframes fade-down {
+      from {
+        opacity: 0;
+        transform: translateY(-16px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+  </style>
 </head>
 
 <body>
-    <div class="pagina">
-        <header class="topo sobe">
-            <span class="fundo" aria-hidden="true">
-                <img src="/assets/img/arquivo/telephone-exchange-montreal-qe3-33.jpg" width="1920" height="1401" alt=""
-                    fetchpriority="high" decoding="async">
-            </span>
-            <img class="logo sobe" src="/assets/img/Logo-Branco-transparente.png" width="116" height="116"
-                alt="Dr. Da Multa Telecom">
-            <h1 class="frase sobe">Vinte anos lá dentro.</h1>
-            <p class="apoio sobe">O Dr. Jason passou duas décadas dentro das operadoras. Hoje ele atua contra elas, do seu
-                lado.</p>
-        </header>
 
-        <ul class="destinos">
-            <li><a class="cartao cartao--whatsapp sobe"
-                href="https://wa.me/5511973733366?text=Ol%C3%A1%20*Dr.%20Da%20Multa*%20eu%20gostaria%20de%20falar%20com%20um%20especialista."
-                target="_blank" rel="noopener">
-                <span class="fundo" aria-hidden="true">
-                    <img src="/assets/img/arquivo/women-working-at-the-u-s-capitol.jpg" width="1024" height="668" alt=""
-                        loading="lazy" decoding="async">
-                </span>
-                <span class="titulo">Fale com um especialista</span>
-                <span class="texto">Negativado, multado ou cobrado a mais pela operadora? Conte o seu caso.</span>
-                <span class="acao">
-                    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                        <path
-                            d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38a9.87 9.87 0 0 0 4.74 1.21h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2Zm0 18.15h-.01a8.2 8.2 0 0 1-4.19-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.23 8.23 0 0 1-1.26-4.38c0-4.54 3.7-8.23 8.25-8.23 2.2 0 4.27.86 5.83 2.42a8.19 8.19 0 0 1 2.41 5.82c0 4.54-3.7 8.23-8.24 8.23Zm4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.13-.17.24-.64.8-.79.97-.14.16-.29.18-.54.06-.25-.13-1.05-.39-2-1.23-.74-.66-1.24-1.47-1.38-1.72-.15-.25-.02-.38.11-.5.11-.11.25-.29.37-.43.13-.15.17-.25.25-.41.08-.17.04-.31-.02-.43-.06-.12-.56-1.34-.76-1.84-.2-.48-.41-.42-.56-.42l-.48-.01c-.17 0-.43.06-.66.31-.23.25-.86.85-.86 2.07 0 1.22.89 2.4 1.01 2.56.12.17 1.75 2.67 4.23 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.47-.07 1.47-.6 1.67-1.18.21-.58.21-1.07.15-1.18-.06-.1-.23-.17-.48-.29Z" />
-                    </svg>
-                    Falar no WhatsApp
-                </span>
-            </a></li>
+  <!-- ── Hero Banner Background ────────────────────────── -->
+  <div class="hero-banner"></div>
 
-            <li><a class="cartao cartao--ebook sobe" href="/academy/">
-                <img class="capa" src="/assets/img/arquivo/capa-ebook.webp" width="720" height="960"
-                    alt="Capa do e-book O Mar Azul da Advocacia" loading="lazy" decoding="async">
-                <span class="titulo">E-book para advogados</span>
-                <span class="texto">O Mar Azul da Advocacia: um mercado com 1,3 milhão de reclamações por ano na Anatel
-                    e quase nenhum advogado.</span>
-                <span class="acao">Baixar gratuitamente</span>
-            </a></li>
+  <div class="page">
 
-            <li><a class="cartao sobe" href="/academy/imersao/">
-                <span class="fundo" aria-hidden="true">
-                    <img src="/assets/img/arquivo/imersao-mar.webp" width="960" height="540" alt="" loading="lazy"
-                        decoding="async">
-                </span>
-                <span class="titulo">Imersão Telecom ADV</span>
-                <span class="texto">05 e 06 de dezembro, sábado e domingo, das 10h às 16h, online e ao vivo.
-                    <span id="contagem"></span></span>
-                <span class="acao">Entrar na lista de espera</span>
-            </a></li>
-        </ul>
+    <!-- ── Header ──────────────────────────────────────── -->
+    <header class="header">
+      <img decoding="async" class="hero-logo"
+        src="/assets/img/Logo-Branco-transparente.png"
+        alt="Dr. Da Multa Telecom">
+      <p>Defendemos o consumidor contra os abusos das operadoras.</p>
+      <div class="footer-line" style="margin-top: 24px; margin-bottom: 0;"></div>
+    </header>
 
-        <footer class="rodape sobe">
-            <span class="fundo" aria-hidden="true">
-                <img src="/assets/img/arquivo/manhole-cover-post-office-copper-telephone-cable.jpg" width="1920"
-                    height="937" alt="" loading="lazy" decoding="async">
-            </span>
-            <p class="assinatura sobe">Cerqueira Cesar Advocacia</p>
-            <p class="endereco sobe">
-                Av. Cmte. Sampaio, 366 — Km 18, Osasco, SP<br>
-                <a href="/">drdamultatelecom.com.br</a> · Devidamente registrado na OAB.
+    <!-- ── Cards ───────────────────────────────────────── -->
+    <section class="cards" id="cards">
+
+      <!-- Card 1 -->
+      <article class="card" data-card="1">
+        <div class="card-bg"
+          style="background-image:url('/assets/img/links-card-contato.webp')">
+        </div>
+        <div class="card-overlay"></div>
+        <div class="card-content">
+          <h2 class="card-title">
+            Entrar em Contato (WhatsApp)
+            <span class="icon-expand"></span>
+          </h2>
+          <p class="card-preview">Somos especialistas em Direito do Consumidor nas telecomunicações: telefonia,
+            internet e TV por assinatura...</p>
+          <div class="card-body">
+            <hr class="card-divider">
+            <p class="card-text">
+              Somos especialistas em Direito do Consumidor nas telecomunicações: telefonia, internet e TV por
+              assinatura. Cobrança indevida, multa de fidelidade abusiva, serviço que não funciona ou cancelamento
+              que nunca acontece? Conte o seu caso e explicamos quais são os seus direitos.
             </p>
-            <p class="credits">Imagens de acervo: <a
-                    href="https://commons.wikimedia.org/wiki/File:Telephone_exchange_Montreal_QE3_33.jpg">“Telephone
-                    exchange Montreal QE3 33”</a> por Various photographers for Cassell &amp; Co., <a
-                    href="https://creativecommons.org/publicdomain/mark/1.0/">domínio público</a>, via Wikimedia
-                Commons; <a
-                    href="https://commons.wikimedia.org/wiki/File:Women_working_at_the_U.S._Capitol_switchboard,_Washington,_D.C._04925v.jpg">“Women
-                    working at the U.S. Capitol switchboard”</a> por Trikosko, Marion S., <a
-                    href="https://creativecommons.org/publicdomain/mark/1.0/">domínio público</a>, via Wikimedia
-                Commons; <a
-                    href="https://commons.wikimedia.org/wiki/File:Manhole_Cover_-_Post_Office_Copper_Telephone_Cable_Pit.jpg">“Manhole
-                    Cover — Post Office Copper Telephone Cable Pit”</a> por FirstPrinciples, <a
-                    href="https://creativecommons.org/publicdomain/zero/1.0/deed.en">CC0</a>, via Wikimedia
-                Commons.</p>
-        </footer>
-    </div>
+            <a class="card-btn" href="https://wa.me/5511927672324?text=Ol%C3%A1%20*Dr.%20Da%20Multa*%20eu%20gostaria%20de%20falar%20com%20um%20especialista."
+              target="_blank" rel="noopener" onclick="event.stopPropagation()">Falar no WhatsApp</a>
+          </div>
+        </div>
+      </article>
 
-    <script>
-        document.documentElement.setAttribute('data-anim', '');
+      <!-- Card 2 -->
+      <article class="card" data-card="2">
+        <div class="card-bg"
+          style="background-image:url('/academy/img/hero-desktop-960.webp')">
+        </div>
+        <div class="card-overlay"></div>
+        <div class="card-content">
+          <h2 class="card-title">
+            E-book para Advogados
+            <span class="icon-expand"></span>
+          </h2>
+          <p class="card-preview">O Mar Azul da Advocacia: conheça o Direito das Telecomunicações, uma área com muita
+            demanda e poucos advogados especializados...</p>
+          <div class="card-body">
+            <hr class="card-divider">
+            <p class="card-text">
+              E-book gratuito "O Mar Azul da Advocacia". Descubra o Direito das Telecomunicações: uma área com mais de
+              1,3 milhão de reclamações por ano na Anatel e quase nenhum advogado especializado.
+            </p>
+            <a class="card-btn" href="/academy/" onclick="event.stopPropagation()">Baixar o E-book Grátis</a>
+          </div>
+        </div>
+      </article>
 
-        (function () {
-            var alvo = new Date('2026-12-05T10:00:00-03:00');
-            var dias = Math.ceil((alvo - Date.now()) / 86400000);
-            var el = document.getElementById('contagem');
-            if (el && dias > 0) el.textContent = dias === 1 ? 'Falta 1 dia.' : 'Faltam ' + dias + ' dias.';
-        })();
+      <!-- Card 3 -->
+      <article class="card" data-card="3">
+        <div class="card-bg"
+          style="background-image:url('/assets/img/links-card-guia.webp'); background-position: center 25%">
+        </div>
+        <div class="card-overlay"></div>
+        <div class="card-content">
+          <h2 class="card-title">
+            Telefonia Sem Abuso: o Guia Completo
+            <span class="icon-expand"></span>
+          </h2>
+          <p class="card-preview">Livre-se dos abusos das operadoras. O passo a passo para você mesmo contestar multas e
+            cobranças indevidas...</p>
+          <div class="card-body">
+            <hr class="card-divider">
+            <p class="card-text">
+              Livre-se dos abusos das operadoras. Um guia digital com o passo a passo para você mesmo contestar multa de
+              fidelidade, cobrança indevida e cancelamento negado, sem precisar contratar advogado.
+            </p>
+            <a class="card-btn" href="https://pay.hotmart.com/L107067155B?off=byqfk57g" target="_blank" rel="noopener"
+              onclick="event.stopPropagation()">Quero o Guia</a>
+          </div>
+        </div>
+      </article>
 
-        var alvos = document.querySelectorAll('.sobe');
-        // Rede de segurança: se o observador não disparar, tudo aparece mesmo assim.
-        setTimeout(function () {
-            alvos.forEach(function (el) { el.classList.add('dentro'); });
-        }, 1400);
+      <!-- Card 4 -->
+      <article class="card card-escura" data-card="4">
+        <div class="card-bg"
+          style="background-image:url('/assets/img/links-card-workshop.webp'); background-position: center 30%">
+        </div>
+        <div class="card-overlay"></div>
+        <div class="card-content">
+          <h2 class="card-title">
+            Workshop Direito do Consumidor Telecom
+            <span class="icon-expand"></span>
+          </h2>
+          <p class="card-preview">O Mar Azul da Advocacia. Entre na lista de espera e seja avisado em primeiro lugar
+            quando abrir a próxima turma...</p>
+          <div class="card-body">
+            <hr class="card-divider">
+            <p class="card-text">
+              O Mar Azul da Advocacia: um workshop para advogados que querem atuar no Direito do Consumidor nas
+              telecomunicações. As vagas abrem primeiro para a lista de espera. Deixe seus dados e avisamos assim que as
+              inscrições começarem.
+            </p>
+            <a class="card-btn" href="/academy/imersao/#lista-espera" onclick="event.stopPropagation()">Entrar na Lista
+              de Espera</a>
+          </div>
+        </div>
+      </article>
 
-        if (!('IntersectionObserver' in window)) {
-            alvos.forEach(function (el) { el.classList.add('dentro'); });
-        } else {
-            var i = 0;
-            var obs = new IntersectionObserver(function (entradas) {
-                entradas.forEach(function (e) {
-                    if (!e.isIntersecting) return;
-                    e.target.style.transitionDelay = (i++ * 80) + 'ms';
-                    e.target.classList.add('dentro');
-                    obs.unobserve(e.target);
-                });
-            }, { threshold: 0.15, rootMargin: '0px 0px -6% 0px' });
-            alvos.forEach(function (el) { obs.observe(el); });
+      <!-- Card 5 -->
+      <article class="card card-escura" data-card="5">
+        <div class="card-bg"
+          style="background-image:url('/assets/img/links-card-workshop.webp'); background-size: 200%; background-position: 49% 50%">
+        </div>
+        <div class="card-overlay"></div>
+        <div class="card-content">
+          <h2 class="card-title">
+            Canal no YouTube
+            <span class="icon-expand"></span>
+          </h2>
+          <p class="card-preview">Vídeos sobre os seus direitos como consumidor de telefonia, internet e TV por
+            assinatura. Inscreva-se no canal...</p>
+          <div class="card-body">
+            <hr class="card-divider">
+            <p class="card-text">
+              Vídeos sobre os seus direitos como consumidor de telefonia, internet e TV por assinatura. Inscreva-se no
+              canal do Dr. Da Multa Telecom e acompanhe os novos conteúdos.
+            </p>
+            <a class="card-btn" href="https://www.youtube.com/@Dr.DaMultaTelecom?sub_confirmation=1" target="_blank"
+              rel="noopener" onclick="event.stopPropagation()">Visitar o Canal</a>
+          </div>
+        </div>
+      </article>
+
+    </section>
+
+    <!-- ── Footer ──────────────────────────────────────── -->
+    <footer class="footer">
+      <div class="footer-line"></div>
+      <p class="footer-marca">Dr. Da Multa Telecom</p>
+      <p class="footer-sub">Advocacia especializada em Direito do Consumidor nas telecomunicações</p>
+      <p class="footer-oab">Cerqueira Cesar Advocacia · Registrada na OAB</p>
+      <nav class="footer-links">
+        <a href="/">Site</a>
+        <a href="https://www.youtube.com/@Dr.DaMultaTelecom" target="_blank" rel="noopener">YouTube</a>
+        <a href="/academy/privacidade/">Privacidade</a>
+      </nav>
+      <p>© 2026 Dr. Da Multa Telecom</p>
+    </footer>
+
+  </div>
+
+  <!-- ── JavaScript ──────────────────────────────────────── -->
+  <script>
+    (() => {
+      const container = document.getElementById('cards');
+
+      container.addEventListener('click', (e) => {
+        const card = e.target.closest('.card');
+        if (!card) return;
+
+        const isActive = card.classList.contains('active');
+
+        // Close all cards
+        container.querySelectorAll('.card.active').forEach((c) => {
+          c.classList.remove('active');
+        });
+
+        // If this card wasn't active, open it
+        if (!isActive) {
+          card.classList.add('active');
+
+          // Smooth scroll into view after transition
+          setTimeout(() => {
+            card.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+          }, 150);
         }
-    </script>
+      });
+
+      // Precise Scroll Highlight Effect (Strictly 1 card at a time based on target position)
+      const cards = document.querySelectorAll('.card');
+      const targetY = 260; // The fixed Y coordinate (from top) where the first card sits
+
+      const highlightClosestCard = () => {
+        let closestCard = null;
+        let minDistance = Infinity;
+
+        cards.forEach(card => {
+          const rect = card.getBoundingClientRect();
+          // Calculate distance from the top of the viewport to the card's top edge
+          const distance = Math.abs(rect.top - targetY);
+
+          if (distance < minDistance) {
+            minDistance = distance;
+            closestCard = card;
+          }
+        });
+
+        cards.forEach(card => {
+          if (card === closestCard && minDistance < 150) { // Only highlight if reasonably close to the target zone
+            card.classList.add('in-view');
+          } else {
+            card.classList.remove('in-view');
+          }
+        });
+      };
+
+      // Run on scroll and on initial load
+      window.addEventListener('scroll', highlightClosestCard, { passive: true });
+      highlightClosestCard();
+    })();
+  </script>
+
+
 </body>
 
 </html>
