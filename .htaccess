@@ -16,6 +16,10 @@ RewriteCond %{HTTPS} off [OR]
 RewriteCond %{HTTP_HOST} ^www\. [NC]
 RewriteRule ^ https://drdamultatelecom.com.br%{REQUEST_URI} [R=301,L]
 
+# Destino do formulário instantâneo do Meta: responde 200 com e sem a barra final.
+# Reescrita interna (sem redirecionamento): o Meta segue redirecionamentos.
+RewriteRule ^obrigado-multa$ /obrigado-multa/index.html [L]
+
 # URLs antigas do WordPress
 RewriteRule ^recursos-multa-telecom/?$ / [R=301,L]
 RewriteRule ^ebook/?$ /guia-do-consumidor-de-telecomunicacoes/ [R=301,L]

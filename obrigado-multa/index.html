@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Recebemos seu caso | Dr. da Multa Telecom</title>
+  <meta name="theme-color" content="#0B0F1A">
+  <link rel="icon" href="/assets/img/cropped-Logo-e-Simbolos-32x32.png" sizes="32x32">
+
+  <!--
+    Página de destino do formulário instantâneo do Meta (Facebook/Instagram).
+    REGRA: nada de redirecionamento automático (meta refresh, troca de endereço por script
+    ou 301/302). O Meta segue redirecionamentos e bloqueia links de WhatsApp em formulários.
+    A pessoa precisa tocar no botão.
+  -->
+
+  <!-- Meta Pixel: o mesmo da página inicial (lá ele sobe pelo GTM; aqui direto, sem o GTM,
+       para não contar o PageView duas vezes) -->
+  <script>
+    !function (f, b, e, v, n, t, s) {
+      if (f.fbq) return; n = f.fbq = function () {
+        n.callMethod ?
+        n.callMethod.apply(n, arguments) : n.queue.push(arguments)
+      };
+      if (!f._fbq) f._fbq = n; n.push = n; n.loaded = !0; n.version = '2.0';
+      n.queue = []; t = b.createElement(e); t.async = !0;
+      t.src = v; s = b.getElementsByTagName(e)[0];
+      s.parentNode.insertBefore(t, s)
+    }(window, document, 'script', 'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '2038465916729216');
+    fbq('track', 'PageView');
+  </script>
+  <noscript><img height="1" width="1" style="display:none" alt=""
+      src="https://www.facebook.com/tr?id=2038465916729216&ev=PageView&noscript=1"></noscript>
+
+  <!-- Google tag: o mesmo da página inicial -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=GT-PJR5LPQ8"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'GT-PJR5LPQ8');
+  </script>
+
+  <style>
+    :root {
+      --fundo: #0B0F1A;
+      --cartao: #141A2B;
+      --texto: #FFFFFF;
+      --suave: rgba(255, 255, 255, .72);
+      --bege: #E8DCC4;
+      --verde: #25D366;
+      --verde-escuro: #1EBE5A;
+      --tinta-botao: #0B2414;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html { -webkit-text-size-adjust: 100%; }
+
+    body {
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+      background: var(--fundo);
+      color: var(--texto);
+      min-height: 100dvh;
+      display: flex;
+      justify-content: center;
+      line-height: 1.5;
+    }
+
+    main {
+      width: 100%;
+      max-width: 480px;
+      padding: 32px 16px 24px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    .logo { width: 104px; height: auto; display: block; }
+
+    h1 {
+      margin-top: 20px;
+      font-size: 1.75rem;
+      line-height: 1.2;
+      font-weight: 700;
+      letter-spacing: -.01em;
+    }
+
+    .sub {
+      margin-top: 10px;
+      font-size: 1.05rem;
+      color: var(--suave);
+      max-width: 34ch;
+    }
+
+    .btn-whats {
+      margin-top: 24px;
+      width: 100%;
+      min-height: 60px;
+      padding: 16px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      background: var(--verde);
+      /* texto escuro: contraste 8,6:1 com o verde (o branco daria só 2:1) */
+      color: var(--tinta-botao);
+      font-size: 1.15rem;
+      font-weight: 700;
+      text-decoration: none;
+      border-radius: 14px;
+      box-shadow: 0 6px 24px rgba(37, 211, 102, .28);
+      transition: background .2s ease, transform .1s ease;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .btn-whats:hover { background: var(--verde-escuro); }
+    .btn-whats:active { transform: scale(.98); }
+    .btn-whats:focus-visible { outline: 3px solid var(--bege); outline-offset: 3px; }
+    .btn-whats svg { width: 28px; height: 28px; flex-shrink: 0; }
+
+    .tenha {
+      margin-top: 32px;
+      width: 100%;
+      background: var(--cartao);
+      border: 1px solid rgba(232, 220, 196, .14);
+      border-radius: 14px;
+      padding: 20px;
+      text-align: left;
+    }
+
+    .tenha h2 {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--bege);
+    }
+
+    .tenha ul { list-style: none; margin-top: 12px; }
+
+    .tenha li {
+      position: relative;
+      padding-left: 26px;
+      color: var(--suave);
+      font-size: .98rem;
+    }
+
+    .tenha li + li { margin-top: 8px; }
+
+    .tenha li::before {
+      content: "";
+      position: absolute;
+      left: 2px;
+      top: .45em;
+      width: 12px;
+      height: 7px;
+      border-left: 2px solid var(--verde);
+      border-bottom: 2px solid var(--verde);
+      transform: rotate(-45deg);
+    }
+
+    footer {
+      margin-top: 40px;
+      font-size: .8rem;
+      color: rgba(255, 255, 255, .45);
+    }
+
+    footer a { color: var(--bege); }
+    footer p + p { margin-top: 4px; }
+  </style>
+</head>
+
+<body>
+  <main>
+    <img class="logo" src="/assets/img/logo-branco-240.png" width="240" height="240" alt="Dr. da Multa Telecom">
+
+    <h1>Recebemos seu caso!</h1>
+    <p class="sub">Para agilizar a análise, fale agora com nossa equipe no WhatsApp.</p>
+
+    <a class="btn-whats js-whats" target="_blank" rel="noopener"
+      href="https://wa.me/5511927672324?text=Ol%C3%A1!%20Acabei%20de%20preencher%20o%20formul%C3%A1rio%20sobre%20problema%20com%20a%20operadora.">
+      <svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor">
+        <path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38a9.9 9.9 0 0 0 4.74 1.21h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2Zm0 18.15h-.01a8.23 8.23 0 0 1-4.2-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.2 8.2 0 0 1-1.26-4.38c0-4.54 3.7-8.24 8.25-8.24 2.2 0 4.27.86 5.83 2.42a8.18 8.18 0 0 1 2.41 5.83c0 4.54-3.7 8.23-8.23 8.23Zm4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.12-.16.25-.64.81-.78.97-.14.17-.29.19-.54.06-.25-.12-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.02-.38.11-.51.11-.11.25-.29.37-.43.13-.15.17-.25.25-.42.08-.16.04-.31-.02-.43-.06-.12-.56-1.34-.76-1.84-.2-.48-.41-.42-.56-.43h-.48c-.17 0-.43.06-.66.31-.23.25-.86.85-.86 2.07 0 1.22.89 2.4 1.01 2.56.12.17 1.75 2.67 4.23 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.67-1.18.21-.58.21-1.07.14-1.18-.06-.1-.22-.16-.47-.29Z" />
+      </svg>
+      Falar agora no WhatsApp
+    </a>
+
+    <section class="tenha" aria-labelledby="tenha-titulo">
+      <h2 id="tenha-titulo">Tenha em mãos, se possível:</h2>
+      <ul>
+        <li>Fatura ou cobrança da operadora</li>
+        <li>Contrato ou print da oferta</li>
+        <li>Protocolos de atendimento</li>
+      </ul>
+    </section>
+
+    <a class="btn-whats js-whats" target="_blank" rel="noopener"
+      href="https://wa.me/5511927672324?text=Ol%C3%A1!%20Acabei%20de%20preencher%20o%20formul%C3%A1rio%20sobre%20problema%20com%20a%20operadora.">
+      <svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor">
+        <path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38a9.9 9.9 0 0 0 4.74 1.21h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2Zm0 18.15h-.01a8.23 8.23 0 0 1-4.2-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.2 8.2 0 0 1-1.26-4.38c0-4.54 3.7-8.24 8.25-8.24 2.2 0 4.27.86 5.83 2.42a8.18 8.18 0 0 1 2.41 5.83c0 4.54-3.7 8.23-8.23 8.23Zm4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.12-.16.25-.64.81-.78.97-.14.17-.29.19-.54.06-.25-.12-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.02-.38.11-.51.11-.11.25-.29.37-.43.13-.15.17-.25.25-.42.08-.16.04-.31-.02-.43-.06-.12-.56-1.34-.76-1.84-.2-.48-.41-.42-.56-.43h-.48c-.17 0-.43.06-.66.31-.23.25-.86.85-.86 2.07 0 1.22.89 2.4 1.01 2.56.12.17 1.75 2.67 4.23 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.67-1.18.21-.58.21-1.07.14-1.18-.06-.1-.22-.16-.47-.29Z" />
+      </svg>
+      Falar agora no WhatsApp
+    </a>
+
+    <footer>
+      <p>Dr. da Multa Telecom · Cerqueira Cesar Advocacia</p>
+      <p><a href="/academy/privacidade/">Política de privacidade</a></p>
+    </footer>
+  </main>
+
+  <script>
+    // Clique no WhatsApp: registra o contato e deixa o link abrir normalmente, em nova aba.
+    // Não há nenhum redirecionamento automático nesta página.
+    (function () {
+      document.querySelectorAll('.js-whats').forEach(function (botao) {
+        botao.addEventListener('click', function () {
+          var eventId = 'contact-' + Date.now() + '-' + Math.random().toString(36).slice(2, 10);
+
+          if (typeof fbq === 'function') {
+            fbq('track', 'Contact',
+              { content_name: 'whatsapp_obrigado_multa', content_category: 'lead_form_meta' },
+              { eventID: eventId });
+          }
+
+          if (typeof gtag === 'function') {
+            gtag('event', 'whatsapp_click', {
+              content_name: 'whatsapp_obrigado_multa',
+              content_category: 'lead_form_meta',
+              transport_type: 'beacon'
+            });
+          }
+
+          // API de Conversões (CAPI): ainda não existe para o Contact deste pixel.
+          // A do /academy/ (webhook do n8n) só envia o Lead, e de outro pixel.
+          // Quando houver um webhook para isto, envie aqui o mesmo eventId com
+          // navigator.sendBeacon(URL_DO_WEBHOOK, JSON.stringify({ event_name: 'Contact',
+          // event_id: eventId, event_source_url: document.URL })) para deduplicar com o Pixel.
+        });
+      });
+    })();
+  </script>
+</body>
+
+</html>
