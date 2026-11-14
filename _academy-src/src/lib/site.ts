@@ -15,7 +15,7 @@ export const site = {
   waitlistWebhookUrl: clean(process.env.NEXT_PUBLIC_WAITLIST_WEBHOOK_URL),
   whatsappGroupUrl: clean(process.env.NEXT_PUBLIC_WHATSAPP_GROUP_URL),
   ebookUrl: clean(process.env.NEXT_PUBLIC_EBOOK_URL) || `${BASE_PATH}/ebook/o-mar-azul-da-advocacia.pdf`,
-  supportWhatsapp: clean(process.env.NEXT_PUBLIC_SUPPORT_WHATSAPP) || "5511973733366",
+  supportWhatsapp: clean(process.env.NEXT_PUBLIC_SUPPORT_WHATSAPP) || "5511927672324",
   youtubeVideoId: clean(process.env.NEXT_PUBLIC_YOUTUBE_VIDEO_ID),
   metaPixelId: clean(process.env.NEXT_PUBLIC_META_PIXEL_ID),
   fbDomainVerification: clean(process.env.NEXT_PUBLIC_FB_DOMAIN_VERIFICATION),

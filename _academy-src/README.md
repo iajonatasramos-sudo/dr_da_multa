@@ -48,7 +48,7 @@ Todas são `NEXT_PUBLIC_*`: entram no HTML/JS **na hora do build**. Mudou alguma
 | `NEXT_PUBLIC_LEAD_WEBHOOK_URL` | sim | Webhook do n8n que recebe o lead |
 | `NEXT_PUBLIC_WHATSAPP_GROUP_URL` | sim | `https://chat.whatsapp.com/...` |
 | `NEXT_PUBLIC_EBOOK_URL` | não | Padrão: `/ebook/o-mar-azul-da-advocacia.pdf` (já incluso em `public/ebook/`) |
-| `NEXT_PUBLIC_SUPPORT_WHATSAPP` | não | Padrão: `5511973733366`. Usado no erro do formulário do e-book e no "Tenho outra dúvida" da imersão |
+| `NEXT_PUBLIC_SUPPORT_WHATSAPP` | não | Padrão: `5511927672324`. Usado no erro do formulário do e-book e no "Tenho outra dúvida" da imersão |
 | `NEXT_PUBLIC_META_PIXEL_ID` | sim (anúncios) | `29379423411743032` (conjunto "Telecom ADV Academy - Site Dr. Da Multa"). Sem ele, o Pixel não carrega |
 | `NEXT_PUBLIC_FB_DOMAIN_VERIFICATION` | não | Código da verificação de domínio do Meta. Vazio = a meta tag não aparece |
 | `NEXT_PUBLIC_GA4_ID` | não | `G-XXXXXXX` |
